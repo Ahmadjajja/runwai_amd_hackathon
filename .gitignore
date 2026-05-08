@@ -1,0 +1,13 @@
+output/
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.DS_Store
+*.jpg
+*.jpeg
+*.png
+*.mp4
+.claude/
