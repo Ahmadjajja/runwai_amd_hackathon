@@ -1,0 +1,27 @@
+# IDE
+.vscode/
+.idea/
+
+# Testing/Debug
+.playwright-mcp/
+*.png
+*.jpg
+*.jpeg
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+
+# Archives
+*.zip
+
+# Misc
+transcript.txt
+demo.py
+requirements.txt

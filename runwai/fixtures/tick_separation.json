@@ -1,0 +1,59 @@
+{
+  "tick_id": "tick-sep-001",
+  "timestamp": "2026-05-08T02:05:00Z",
+  "airport": "CYYZ",
+  "flights": [
+    {
+      "icao24": "ac1234",
+      "callsign": "ACA456",
+      "latitude": 43.6800,
+      "longitude": -79.6300,
+      "baro_altitude_m": 2438.4,
+      "velocity_ms": 128.6,
+      "true_track_deg": 90.0,
+      "vertical_rate_ms": -2.54,
+      "on_ground": false,
+      "aircraft_code": "B77W",
+      "weight_class": "Heavy"
+    },
+    {
+      "icao24": "wj5678",
+      "callsign": "WJA123",
+      "latitude": 43.6820,
+      "longitude": -79.5700,
+      "baro_altitude_m": 2590.8,
+      "velocity_ms": 123.5,
+      "true_track_deg": 85.0,
+      "vertical_rate_ms": -2.29,
+      "on_ground": false,
+      "aircraft_code": "B738",
+      "weight_class": "Medium"
+    },
+    {
+      "icao24": "ua9999",
+      "callsign": "UAL999",
+      "latitude": 43.9000,
+      "longitude": -79.2000,
+      "baro_altitude_m": 4572.0,
+      "velocity_ms": 144.0,
+      "true_track_deg": 180.0,
+      "vertical_rate_ms": 0.0,
+      "on_ground": false,
+      "aircraft_code": "A321",
+      "weight_class": "Medium"
+    }
+  ],
+  "weather": {
+    "station": "CYYZ",
+    "report_time": "2026-05-08T02:05:00Z",
+    "wind_dir_deg": 270,
+    "wind_speed_kts": 10,
+    "wind_gust_kts": null,
+    "visibility_sm": 10,
+    "ceiling_ft": 8000,
+    "raw_metar": "CYYZ 080205Z 27010KT 10SM SCT030 BKN080 20/12 A3000",
+    "storm_warning": false,
+    "low_visibility": false
+  },
+  "storm_sectors": []
+}

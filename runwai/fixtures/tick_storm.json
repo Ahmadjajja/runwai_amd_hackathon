@@ -1,0 +1,58 @@
+{
+  "tick_id": "tick-storm-001",
+  "timestamp": "2026-05-08T02:10:00Z",
+  "airport": "CYYZ",
+  "flights": [
+    {
+      "icao24": "storm01",
+      "callsign": "ACA789",
+      "latitude": 43.7000,
+      "longitude": -79.6500,
+      "baro_altitude_m": 1828.8,
+      "velocity_ms": 102.9,
+      "true_track_deg": 120.0,
+      "vertical_rate_ms": -4.06,
+      "on_ground": false,
+      "aircraft_code": "A320",
+      "weight_class": "Medium"
+    },
+    {
+      "icao24": "safe01",
+      "callsign": "WJA555",
+      "latitude": 44.0000,
+      "longitude": -79.0000,
+      "baro_altitude_m": 3657.6,
+      "velocity_ms": 154.3,
+      "true_track_deg": 270.0,
+      "vertical_rate_ms": 0.0,
+      "on_ground": false,
+      "aircraft_code": "B738",
+      "weight_class": "Medium"
+    }
+  ],
+  "weather": {
+    "station": "CYYZ",
+    "report_time": "2026-05-08T02:10:00Z",
+    "wind_dir_deg": 270,
+    "wind_speed_kts": 20,
+    "wind_gust_kts": 35,
+    "visibility_sm": 3,
+    "ceiling_ft": 1500,
+    "conditions": "+TSRA",
+    "raw_metar": "CYYZ 080210Z 27020G35KT 3SM +TSRA BKN015CB OVC025 18/16 A2985",
+    "storm_warning": true,
+    "low_visibility": false
+  },
+  "storm_sectors": [
+    {
+      "sector": "B07",
+      "severity": "severe",
+      "polygon": [
+        [43.65, -79.70],
+        [43.65, -79.55],
+        [43.75, -79.55],
+        [43.75, -79.70]
+      ]
+    }
+  ]
+}

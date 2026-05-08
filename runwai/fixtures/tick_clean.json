@@ -1,0 +1,46 @@
+{
+  "tick_id": "tick-clean-001",
+  "timestamp": "2026-05-08T02:00:00Z",
+  "airport": "CYYZ",
+  "flights": [
+    {
+      "icao24": "c0ffee",
+      "callsign": "ACA100",
+      "latitude": 43.6777,
+      "longitude": -79.6248,
+      "baro_altitude_m": 3048.0,
+      "velocity_ms": 128.6,
+      "true_track_deg": 90.0,
+      "vertical_rate_ms": -2.54,
+      "on_ground": false,
+      "aircraft_code": "A320",
+      "weight_class": "Medium"
+    },
+    {
+      "icao24": "deadbe",
+      "callsign": "WJA200",
+      "latitude": 43.7500,
+      "longitude": -79.3800,
+      "baro_altitude_m": 2438.4,
+      "velocity_ms": 113.2,
+      "true_track_deg": 270.0,
+      "vertical_rate_ms": -2.03,
+      "on_ground": false,
+      "aircraft_code": "B738",
+      "weight_class": "Medium"
+    }
+  ],
+  "weather": {
+    "station": "CYYZ",
+    "report_time": "2026-05-08T02:00:00Z",
+    "wind_dir_deg": 270,
+    "wind_speed_kts": 8,
+    "wind_gust_kts": null,
+    "visibility_sm": 15,
+    "ceiling_ft": 10000,
+    "raw_metar": "CYYZ 080200Z 27008KT 15SM FEW040 BKN100 22/14 A3002",
+    "storm_warning": false,
+    "low_visibility": false
+  },
+  "storm_sectors": []
+}
