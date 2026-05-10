@@ -29,7 +29,10 @@ from .formatter import (
     flights_from_opensky,
     weather_from_metar,
     merge_enrichment,
+    preprocess_tick,
 )
+
+from .simulation_adapter import tick_from_frontend_export
 
 __all__ = [
     # Schemas
@@ -52,4 +55,6 @@ __all__ = [
     "flights_from_opensky",
     "weather_from_metar",
     "merge_enrichment",
+    "preprocess_tick",
+    "tick_from_frontend_export",
 ]

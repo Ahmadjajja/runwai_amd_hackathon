@@ -7,7 +7,6 @@
 *.png
 *.jpg
 *.jpeg
-*.mp4
 
 # Python
 __pycache__/
@@ -17,17 +16,11 @@ __pycache__/
 .Python
 env/
 venv/
-.venv/
 .env
 
 # Archives
 *.zip
 
-# Output / generated
-output/
-
 # Misc
 transcript.txt
 demo.py
-.DS_Store
-.claude/

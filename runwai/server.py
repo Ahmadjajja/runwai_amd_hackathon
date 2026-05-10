@@ -1,77 +1,98 @@
 """
-RunwAI API Server — connects the Python pipeline to the frontend dashboard.
+FastAPI bridge between Layer 7 (frontend simulation) and Python layers.
 
-Run:
-    python -m runwai.server
-    # or
-    uvicorn runwai.server:app --host 0.0.0.0 --port 8080 --reload
+Run (from repository root):
+    uvicorn runwai.server:app --reload --host 127.0.0.1 --port 8000
 
-Endpoints:
-    GET /api/tick                  — run one live tick and return JSON
-    GET /api/scenario/{name}       — run a fixture scenario (separation|storm|wake|clean)
-    GET /api/status                — health check
-    GET /                          — serves the frontend dashboard
+Health:
+    GET  http://127.0.0.1:8000/health
+
+Ingest simulation tick (same JSON as frontend getSimulationExport()):
+    POST http://127.0.0.1:8000/api/simulation/tick
+    Query:
+      - run_rules=true|false   (default true)
+      - full_pipeline=true|false (default false) — rules + prompt + LLM + Layer 6 decision
+      - ml_advisory=true|false (default false) — Qwen natural-language advisories for UI alert cards
+      - model_debug=true|false (default false)
+
+Copy ``.env.example`` to ``.env`` and set OPENAI_* / HF_* — see ``runwai/model/adapter.py``.
 """
 
+from __future__ import annotations
+
 import os
-from pathlib import Path
+from typing import Any
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import JSONResponse
 
-app = FastAPI(title="RunwAI", version="1.0")
+from .env_bootstrap import load_repo_dotenv
+
+load_repo_dotenv()
+
+from .metrics import attach_tick_metrics, get_metrics_summary, record_tick_snapshot
+from .pipeline import run_from_simulation_export
+
+app = FastAPI(title="RunwAI Simulation API", version="1.2.0")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-VALID_SCENARIOS = {"separation", "storm", "wake", "clean"}
+
+@app.get("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok", "service": "runwai-simulation-api"}
 
 
-@app.get("/api/status")
-def status():
-    return {"status": "ok", "service": "RunwAI"}
+@app.get("/api/model/status")
+def model_status() -> dict[str, Any]:
+    """Whether a real LLM backend is configured (no secrets returned)."""
+    base = (os.environ.get("OPENAI_BASE_URL") or os.environ.get("MODEL_BASE_URL") or "").strip()
+    hf = bool(os.environ.get("HF_API_KEY"))
+    if base:
+        mode = "openai_compatible"
+    elif hf:
+        mode = "huggingface_inference"
+    else:
+        mode = "stub"
+    return {
+        "mode": mode,
+        "openai_base_url_configured": bool(base),
+        "hf_inference_configured": hf,
+        "model_name": os.environ.get("MODEL_NAME") or os.environ.get("HF_MODEL_ID") or "",
+        "hint": "Copy .env.example to .env in the repo root for Qwen via HF Router or HF_API_KEY.",
+    }
 
 
-@app.get("/api/tick")
-def tick_endpoint():
-    """Run one full pipeline tick with live data."""
-    try:
-        from .main import run_single_tick
-        result = run_single_tick()
-        return JSONResponse(content=result)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+@app.post("/api/simulation/tick")
+def simulation_tick(
+    payload: dict[str, Any],
+    run_rules: bool = Query(True, description="Run Python rules engine"),
+    full_pipeline: bool = Query(
+        False,
+        description="Rules + build_prompt + call_model + DecisionEngine (needs LLM env)",
+    ),
+    ml_advisory: bool = Query(
+        False,
+        description="Qwen: conflict/reroute text for alerts (second LLM call; needs model env)",
+    ),
+    model_debug: bool = Query(False, description="Print prompt/response to server stdout"),
+) -> dict[str, Any]:
+    return run_from_simulation_export(
+        payload,
+        run_rules=run_rules,
+        full_pipeline=full_pipeline,
+        ml_advisory=ml_advisory,
+        model_debug=model_debug,
+    )
 
 
-@app.get("/api/scenario/{name}")
-def scenario_endpoint(name: str):
-    """Run a fixture scenario by name."""
-    if name not in VALID_SCENARIOS:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Unknown scenario '{name}'. Valid: {sorted(VALID_SCENARIOS)}",
-        )
-    try:
-        from .main import run_scenario
-        result = run_scenario(name)
-        return JSONResponse(content=result)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-# Serve the static frontend — mount last so API routes take priority
-_frontend_dir = Path(__file__).parent / "frontend"
-if _frontend_dir.exists():
-    app.mount("/", StaticFiles(directory=str(_frontend_dir), html=True), name="frontend")
-
-
-if __name__ == "__main__":
-    import uvicorn
-    port = int(os.environ.get("PORT", 8080))
-    uvicorn.run("runwai.server:app", host="0.0.0.0", port=port, reload=True)
+@app.get("/api/simulation/status")
+def simulation_status() -> dict[str, Any]:
+    """Reserved for future last-tick cache."""
+    return {"note": "Use POST /api/simulation/tick response as source of truth."}

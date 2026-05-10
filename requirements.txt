@@ -1,5 +1,12 @@
-requests>=2.31.0
-opencv-python>=4.8.0
-yt-dlp>=2024.1.0
-numpy>=1.24.0
-Pillow>=10.0.0
+# RunwAI API + pipeline (install from repo root: pip install -r requirements.txt)
+fastapi>=0.115
+uvicorn[standard]>=0.32
+pydantic>=2.0
+python-dotenv>=1.0
+huggingface_hub>=0.26
+httpx>=0.27
+requests>=2.31
+
+# Layer 4 — Qwen (and other OSS instruct models) via OpenAI-compatible APIs
+langchain-core>=0.3
+langchain-openai>=0.2

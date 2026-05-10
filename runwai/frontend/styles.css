@@ -39,7 +39,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.3rem;
+  font-size: 1.45rem;
   font-weight: 700;
 }
 
@@ -64,13 +64,13 @@ body {
 
 .stat-value {
   display: block;
-  font-size: 1.4rem;
+  font-size: 1.65rem;
   font-weight: 700;
   color: #3dd5ff;
 }
 
 .stat-label {
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   color: #6b7a8f;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -99,7 +99,7 @@ body {
 }
 
 .status-text {
-  font-size: 0.75rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: #4ade80;
   letter-spacing: 0.1em;
@@ -130,6 +130,15 @@ body {
   display: flex;
   flex: 1;
   overflow: hidden;
+  min-height: 0;
+}
+
+.workspace {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
 }
 
 /* ─── MAP ────────────────────────────────────────────────────────────────── */
@@ -139,6 +148,7 @@ body {
   position: relative;
   background: #0d1117;
   overflow: hidden;
+  min-height: 0;
 }
 
 .map-container {
@@ -195,7 +205,7 @@ body {
 
 .zoom-level {
   text-align: center;
-  font-size: 0.7rem;
+  font-size: 0.88rem;
   color: #6b7a8f;
   padding: 4px 0;
 }
@@ -208,8 +218,8 @@ body {
   background: rgba(15, 20, 30, 0.9);
   border: 1px solid rgba(100, 140, 200, 0.2);
   border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 0.7rem;
+  padding: 12px 16px;
+  font-size: 0.95rem;
 }
 
 .legend-row {
@@ -243,10 +253,10 @@ body {
   background: linear-gradient(90deg, rgba(139, 92, 246, 0.9), rgba(248, 113, 113, 0.9));
   color: white;
   text-align: center;
-  padding: 10px;
+  padding: 14px 16px;
   font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
   transform: translateY(-100%);
   transition: transform 0.3s;
 }
@@ -258,7 +268,7 @@ body {
 /* ─── SIDE PANEL ─────────────────────────────────────────────────────────── */
 
 .side-panel {
-  width: 280px;
+  width: 320px;
   background: rgba(12, 16, 24, 0.98);
   border-left: 1px solid rgba(100, 140, 200, 0.15);
   display: flex;
@@ -281,7 +291,7 @@ body {
   border-radius: 6px;
   color: #e8ecf2;
   padding: 8px 10px;
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   cursor: pointer;
 }
 
@@ -316,7 +326,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #8a9db8;
   margin-bottom: 10px;
@@ -339,27 +349,81 @@ body {
   background: rgba(248, 113, 113, 0.05);
 }
 
-.alerts-list {
+.alerts-dock {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
+  border-top: 1px solid rgba(100, 140, 200, 0.2);
+  padding: 0;
+  overflow: visible;
+}
+
+.alerts-dock-head {
+  display: flex;
+  align-items: center;
   gap: 6px;
+  padding: 4px 10px 2px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #8a9db8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.alerts-dock-title {
+  color: #c5d3e8;
+}
+
+.alerts-list {
+  display: block;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 4px 8px 6px;
+}
+
+.alerts-policy-bar {
+  font-size: 0.62rem;
+  line-height: 1.25;
+  color: #c8d4e8;
+  padding: 4px 8px 5px;
+  margin-bottom: 4px;
+  background: rgba(61, 213, 255, 0.06);
+  border: 1px solid rgba(61, 213, 255, 0.18);
+  border-radius: 5px;
+}
+
+.alerts-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 6px;
+  align-items: flex-start;
 }
 
 .no-alerts {
   text-align: center;
   color: #4ade80;
-  font-size: 0.8rem;
-  padding: 10px;
+  font-size: 0.72rem;
+  padding: 8px;
 }
 
 .alert-item {
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  padding: 4px 7px 5px;
+  background: rgba(30, 35, 45, 0.85);
+  border-radius: 5px;
+  border-left: 2px solid #fbbf24;
+  flex: 1 1 200px;
+  max-width: min(380px, 100%);
+  min-width: min(180px, 100%);
+}
+
+.alert-row {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px;
-  background: rgba(30, 35, 45, 0.8);
-  border-radius: 6px;
-  border-left: 3px solid #fbbf24;
+  gap: 5px;
 }
 
 .alert-item.red {
@@ -367,12 +431,22 @@ body {
   background: rgba(248, 113, 113, 0.1);
 }
 
+.alert-item-ml {
+  border-left-color: #60cfff;
+  background: rgba(61, 213, 255, 0.07);
+}
+
+.alert-item-ml .alert-rule {
+  background: rgba(61, 213, 255, 0.2);
+  color: #7fe8ff;
+}
+
 .alert-rule {
   background: rgba(248, 113, 113, 0.2);
   color: #f87171;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.58rem;
   font-weight: 700;
 }
 
@@ -383,14 +457,36 @@ body {
 
 .alert-flights {
   flex: 1;
-  font-size: 0.8rem;
+  font-size: 0.68rem;
   font-weight: 600;
   font-family: monospace;
 }
 
 .alert-dist {
-  font-size: 0.75rem;
-  color: #6b7a8f;
+  font-size: 0.62rem;
+  color: #9eb0cc;
+  font-family: monospace;
+}
+
+.alert-explain {
+  font-size: 0.58rem;
+  line-height: 1.2;
+  color: #a8b6ca;
+}
+
+.alert-advice {
+  font-size: 0.58rem;
+  line-height: 1.2;
+  color: #d8dee8;
+  padding-top: 2px;
+  margin-top: 1px;
+  border-top: 1px solid rgba(100, 140, 200, 0.1);
+}
+
+.alert-advice-label {
+  font-weight: 700;
+  color: #5ec8f0;
+  margin-right: 3px;
 }
 
 /* AI Panel */
@@ -402,7 +498,7 @@ body {
 .ai-idle {
   text-align: center;
   color: #6b7a8f;
-  font-size: 0.8rem;
+  font-size: 1rem;
   padding: 15px;
 }
 
@@ -415,7 +511,7 @@ body {
 }
 
 .ai-target {
-  font-size: 1.1rem;
+  font-size: 1.22rem;
   font-weight: 700;
   color: #3dd5ff;
   font-family: monospace;
@@ -423,15 +519,35 @@ body {
 }
 
 .ai-command {
-  font-size: 1.4rem;
+  font-size: 1.22rem;
   font-weight: 700;
   color: #f87171;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
-.ai-reason {
-  font-size: 0.75rem;
-  color: #8a9db8;
+.ai-explain {
+  font-size: 0.98rem;
+  line-height: 1.45;
+  color: #b8c8dc;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.ai-advice {
+  font-size: 1rem;
+  line-height: 1.45;
+  color: #e8ecf2;
+  text-align: left;
+}
+
+.ai-advice-label {
+  font-weight: 700;
+  color: #3dd5ff;
+}
+
+.ai-action--crash {
+  border-color: rgba(248, 113, 113, 0.45);
+  background: rgba(248, 113, 113, 0.12);
 }
 
 /* Flights Panel */
@@ -464,18 +580,18 @@ body {
 .flight-id {
   font-weight: 700;
   font-family: monospace;
-  font-size: 0.85rem;
+  font-size: 1.08rem;
   color: #e8ecf2;
 }
 
 .flight-type {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: #6b7a8f;
 }
 
 .flight-phase {
   margin-left: auto;
-  font-size: 0.65rem;
+  font-size: 0.85rem;
   color: #3dd5ff;
   text-transform: uppercase;
 }
