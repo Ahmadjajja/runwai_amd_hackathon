@@ -15,6 +15,10 @@ Usage:
     python -m runwai.main --scenario separation  # Run test scenario
 """
 
+from .env_bootstrap import load_repo_dotenv
+
+load_repo_dotenv()
+
 import argparse
 import time
 import json
@@ -25,7 +29,6 @@ from .ingestion import fetch_flights, fetch_weather, fetch_enriched_flights, bui
 
 # Layer 2 - Preprocessing
 from .preprocessing import preprocess_tick, TickData, Flight, Weather
-from .preprocessing.formatter import preprocess_tick
 
 # Layer 3 - Prompt Builder
 from .prompt import build_prompt
@@ -47,6 +50,8 @@ def run_single_tick(use_mock: bool = False, debug: bool = False) -> dict:
     Returns:
         Dict with tick results including decision
     """
+    tick_start = time.time()
+
     print("\n" + "="*60)
     print("RunwAI - Processing Tick")
     print("="*60)
@@ -91,13 +96,12 @@ def run_single_tick(use_mock: bool = False, debug: bool = False) -> dict:
     # Layer 6: Validate decision
     print("\n[Layer 6] Validating decision...")
     engine = DecisionEngine()
-    
-    violation = rules_output.violations[0] if rules_output.violations else None
+
     decision = engine.process(
         tick=tick,
         rules_output=rules_output,
         model_response_text=model_response_text,
-        original_violation=violation,
+        tick_start_time=tick_start,
     )
     
     print(f"  - Valid: {decision.action_valid}")
@@ -152,11 +156,11 @@ def run_scenario(scenario_name: str) -> dict:
     # Run through layers 5, 3, 4, 6
     rules_output = run_all_rules(tick)
     prompt = build_prompt(tick, rules_output)
+    tick_start = time.time()
     model_response_text = call_model(prompt, debug_print=False)
-    
+
     engine = DecisionEngine()
-    violation = rules_output.violations[0] if rules_output.violations else None
-    decision = engine.process(tick, rules_output, model_response_text, violation)
+    decision = engine.process(tick, rules_output, model_response_text, tick_start)
     
     print(f"\n[Result] {scenario_name}")
     print(f"  Violations: {len(rules_output.violations)}")

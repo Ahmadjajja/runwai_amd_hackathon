@@ -1,5 +1,5 @@
 """
-FastAPI bridge between Layer 7 (frontend simulation) and Python layers (rules, optional full pipeline).
+FastAPI bridge between Layer 7 (frontend simulation) and Python layers.
 
 Run (from repository root):
     uvicorn runwai.server:app --reload --host 127.0.0.1 --port 8000
@@ -9,21 +9,31 @@ Health:
 
 Ingest simulation tick (same JSON as frontend getSimulationExport()):
     POST http://127.0.0.1:8000/api/simulation/tick
-    Content-Type: application/json
+    Query:
+      - run_rules=true|false   (default true)
+      - full_pipeline=true|false (default false) — rules + prompt + LLM + Layer 6 decision
+      - ml_advisory=true|false (default false) — Qwen natural-language advisories for UI alert cards
+      - model_debug=true|false (default false)
+
+Copy ``.env.example`` to ``.env`` and set OPENAI_* / HF_* — see ``runwai/model/adapter.py``.
 """
 
 from __future__ import annotations
 
-import time
+import os
 from typing import Any
 
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
-from .preprocessing.simulation_adapter import tick_from_frontend_export
-from .rules import run_all_rules
+from .env_bootstrap import load_repo_dotenv
 
-app = FastAPI(title="RunwAI Simulation API", version="1.0.0")
+load_repo_dotenv()
+
+from .metrics import attach_tick_metrics, get_metrics_summary, record_tick_snapshot
+from .pipeline import run_from_simulation_export
+
+app = FastAPI(title="RunwAI Simulation API", version="1.2.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -33,55 +43,56 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-_last_tick_summary: dict[str, Any] | None = None
-
-
-def _violation_to_dict(v: Any) -> dict[str, Any]:
-    if hasattr(v, "model_dump"):
-        return v.model_dump()
-    return v.dict()
-
 
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok", "service": "runwai-simulation-api"}
 
 
+@app.get("/api/model/status")
+def model_status() -> dict[str, Any]:
+    """Whether a real LLM backend is configured (no secrets returned)."""
+    base = (os.environ.get("OPENAI_BASE_URL") or os.environ.get("MODEL_BASE_URL") or "").strip()
+    hf = bool(os.environ.get("HF_API_KEY"))
+    if base:
+        mode = "openai_compatible"
+    elif hf:
+        mode = "huggingface_inference"
+    else:
+        mode = "stub"
+    return {
+        "mode": mode,
+        "openai_base_url_configured": bool(base),
+        "hf_inference_configured": hf,
+        "model_name": os.environ.get("MODEL_NAME") or os.environ.get("HF_MODEL_ID") or "",
+        "hint": "Copy .env.example to .env in the repo root for Qwen via HF Router or HF_API_KEY.",
+    }
+
+
 @app.post("/api/simulation/tick")
 def simulation_tick(
     payload: dict[str, Any],
-    run_rules: bool = Query(True, description="Run Python rules engine on this tick"),
+    run_rules: bool = Query(True, description="Run Python rules engine"),
+    full_pipeline: bool = Query(
+        False,
+        description="Rules + build_prompt + call_model + DecisionEngine (needs LLM env)",
+    ),
+    ml_advisory: bool = Query(
+        False,
+        description="Qwen: conflict/reroute text for alerts (second LLM call; needs model env)",
+    ),
+    model_debug: bool = Query(False, description="Print prompt/response to server stdout"),
 ) -> dict[str, Any]:
-    """
-    Accept full simulation export (aircraft, weather, alerts).
-    Optionally runs backend rules and returns violations for comparison / logging.
-    """
-    global _last_tick_summary
-    t0 = time.perf_counter()
-
-    tick = tick_from_frontend_export(payload)
-    out: dict[str, Any] = {
-        "ok": True,
-        "tick_id": tick.tick_id,
-        "aircraft_count": len(tick.flights),
-        "frontend_alert_count": len(payload.get("alerts") or []),
-        "latency_preprocess_ms": round((time.perf_counter() - t0) * 1000, 2),
-    }
-
-    if run_rules:
-        t1 = time.perf_counter()
-        rules_output = run_all_rules(tick)
-        out["rules_evaluated"] = rules_output.rules_evaluated
-        out["backend_violations"] = len(rules_output.violations)
-        out["violations"] = [_violation_to_dict(v) for v in rules_output.violations]
-        out["latency_rules_ms"] = round((time.perf_counter() - t1) * 1000, 2)
-
-    out["latency_total_ms"] = round((time.perf_counter() - t0) * 1000, 2)
-    _last_tick_summary = {"tick_id": out["tick_id"], "aircraft_count": out["aircraft_count"]}
-    return out
+    return run_from_simulation_export(
+        payload,
+        run_rules=run_rules,
+        full_pipeline=full_pipeline,
+        ml_advisory=ml_advisory,
+        model_debug=model_debug,
+    )
 
 
 @app.get("/api/simulation/status")
 def simulation_status() -> dict[str, Any]:
-    """Last successfully posted tick metadata (debug)."""
-    return {"last": _last_tick_summary}
+    """Reserved for future last-tick cache."""
+    return {"note": "Use POST /api/simulation/tick response as source of truth."}

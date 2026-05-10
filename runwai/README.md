@@ -20,7 +20,7 @@ runwai/
 │   └── templates.py        # System role, rules, output schema
 │
 ├── model/              # Layer 4 - Model Adapter
-│   └── adapter.py          # HuggingFace API (Qwen)
+│   └── adapter.py          # LangChain ChatOpenAI → Qwen (OSS) + HF / httpx fallbacks
 │
 ├── rules/              # Layer 5 - Rules Engine
 │   ├── engine.py           # Orchestrator
@@ -86,9 +86,23 @@ uvicorn runwai.server:app --reload --host 127.0.0.1 --port 8000
 ```
 
 - `GET http://127.0.0.1:8000/health` — health check  
+- `GET http://127.0.0.1:8000/api/model/status` — whether Qwen/HF is configured (**stub** vs **openai_compatible** / **huggingface_inference**; no secrets)
 - `POST http://127.0.0.1:8000/api/simulation/tick` — body = JSON from the frontend (`getSimulationExport()` shape: aircraft, weather, alerts)
 
+Query parameters:
+
+| Parameter | Default | Meaning |
+|-----------|---------|---------|
+| `run_rules` | `true` | Run Python `run_all_rules` on the tick |
+| `full_pipeline` | `false` | Also run prompt → `call_model` → Layer 6 `DecisionEngine` (needs LLM env vars below) |
+| `ml_advisory` | `false` | Second LLM call: Qwen-style JSON → human-readable conflict/reroute lines (`ml_advisories`, `multimodal_context`) for the UI |
+| `model_debug` | `false` | Log prompt/response on server stdout |
+
+The frontend enables **`ml_advisory`** by default (`CONFIG.API_ML_ADVISORY` in `frontend/main.js`). Cards labeled **QWEN** show model text; **QWEN-PRED** rows are **model-only pair risks** from telemetry (`model_conflict_predictions`). Python rules still compute deterministic violations; Qwen augments with forward-looking narrative + optional extra pairs.
+
 The browser sends this package **every 2 seconds** by default (`CONFIG.API_PUSH_INTERVAL_MS` in `frontend/main.js`). Override base URL before load: `window.__RUNWAI_API__ = 'http://127.0.0.1:8000'` or set `CONFIG.API_BASE_URL` to `''` to disable pushes.
+
+For **full stack on GPU** (vLLM / OpenAI-compatible server on AMD MI300X or similar), point the adapter at your inference URL — same JSON body, add `?full_pipeline=true` when posting from curl/tests (the default frontend push stays lightweight with rules-only unless you extend `main.js`).
 
 ## Data Flow
 
@@ -105,7 +119,7 @@ FR24 API ────┘                                               │
                                              v
                               ┌─────────────────────────────────────┐
                               │         Layer 4 (Model)             │
-                              │      Qwen via HuggingFace API       │
+                              │   HF API or OpenAI-compatible API   │
                               └─────────────────────────────────────┘
                                              │
                                              v
@@ -129,9 +143,34 @@ FR24 API ────┘                                               │
 
 ## Environment Variables
 
+Copy **`.env.example`** to **`.env`** in the **repository root** (same folder as `requirements.txt`). Values load automatically via `python-dotenv` before the model adapter reads configuration.
+
+Layer 5 rules compute **conflicts / predictions** from simulation geometry; **Qwen** turns those findings into **natural-language advisories** and reroute wording (`ml_advisory`). Layer 4 (`runwai/model/adapter.py`) uses **LangChain** [`ChatOpenAI`](https://python.langchain.com/) for OpenAI-compatible endpoints. It falls back to raw `httpx`, then Hugging Face `InferenceClient`, then a stub.
+
 ```bash
-HF_API_KEY=hf_xxxxxxxxxxxxx  # HuggingFace API key for Qwen model
+# 1) OpenAI-compatible API — LangChain routes here first (set USE_LANGCHAIN=0 to skip)
+OPENAI_BASE_URL=https://router.huggingface.co   # or http://127.0.0.1:8000/v1 — see note below
+MODEL_NAME=Qwen/Qwen2.5-7B-Instruct:together    # Qwen on HF Router / your vLLM model id
+OPENAI_API_KEY=hf_xxx                           # or MODEL_API_KEY / HF token for router
+
+# Same token name many notebooks use (HF Router); adapter also reads HF_TOKEN if OPENAI_API_KEY unset
+# HF_TOKEN=hf_xxx
+
+# Optional
+USE_LANGCHAIN=1          # default on; set 0 to force direct httpx only
+MODEL_TEMPERATURE=0.3
+MODEL_MAX_TOKENS=1024    # main pipeline LLM (full_pipeline=true)
+ML_ADVISORY_TEMPERATURE=0.42
+ML_ADVISORY_MAX_TOKENS=2048   # second call — longer JSON for multiple flight pairs
+
+# 2) Hugging Face Inference API (fallback if no OPENAI_BASE_URL)
+HF_API_KEY=hf_xxxxxxxxxxxxx
+HF_MODEL_ID=Qwen/Qwen2.5-72B-Instruct
 ```
+
+**URL shape:** pass the API **origin** without `/chat/completions`. If you already use `https://host/v1` in other tools, that still works — the adapter normalizes to `.../v1/chat/completions`.
+
+**CrewAI / AutoGen:** this repo uses LangChain as the thin LLM layer; you can wrap `call_model` or add agents that call the same env-backed stack without changing the adapter.
 
 ## Requirements
 

@@ -49,6 +49,10 @@ const CONFIG = {
   API_BASE_URL: typeof window !== "undefined" ? window.__RUNWAI_API__ || "http://127.0.0.1:8000" : "",
   /** Send full simulation JSON to Python every N ms (flight packages + weather + alerts). */
   API_PUSH_INTERVAL_MS: 2000,
+  /** If true, POST adds ?full_pipeline=true (rules + LLM + decision — requires model env on server). */
+  API_FULL_PIPELINE: false,
+  /** If true, POST adds ?ml_advisory=true — Qwen writes conflict/reroute text into alert cards. */
+  API_ML_ADVISORY: true,
 };
 
 /** Canvas typography tuned for periodic screenshots (ML / GPU inference). */
@@ -175,6 +179,11 @@ let time = 0;
 
 let aircraft = [];
 let violations = [];
+/** Qwen / API: natural-language advisories (reroute lines) from POST /api/simulation/tick?ml_advisory=true */
+let mlAdvisoriesFromApi = [];
+/** Qwen-only forward-looking pair risks (telemetry), distinct from rule engine */
+let mlPredictionsFromApi = [];
+let multimodalContextFromApi = "";
 let trajectoryAlerts = [];
 let explosions = [];
 let weather = {
@@ -1458,7 +1467,8 @@ function roundRect(ctx, x, y, w, h, r) {
 // ─── UI ─────────────────────────────────────────────────────────────────────
 
 function updateUI() {
-  const alertCount = violations.length;
+  const alertCount =
+    violations.length + mlAdvisoriesFromApi.length + mlPredictionsFromApi.length;
   ui.aircraftCount.textContent = aircraft.length;
   ui.violationCount.textContent = String(alertCount);
   ui.violationCount.parentElement.classList.toggle("alert", alertCount > 0);
@@ -1474,34 +1484,69 @@ function updateUI() {
   }
   ui.alertsPanel.classList.toggle("has-alerts", alertCount > 0);
 
-  const allAlerts = violations.map(enrichViolationForUi);
+  const mlRows = mlAdvisoriesFromApi.map((a) => {
+    const fl = Array.isArray(a.flights) ? a.flights : [];
+    const sec = Array.isArray(a.sectors_involved) && a.sectors_involved.length;
+    const sectorNote = sec ? ` Sectors: ${a.sectors_involved.join(", ")}.` : "";
+    return {
+      rule: "ml_advisory",
+      severity: a.severity === "red" ? "red" : "yellow",
+      flights: fl,
+      distance: "—",
+      rule_explanation: (a.summary || "Model advisory") + sectorNote,
+      suggested_action: a.recommendation || "—",
+    };
+  });
+  const predRows = mlPredictionsFromApi.map((p) => {
+    const fl = Array.isArray(p.flights) ? p.flights : [];
+    return {
+      rule: "ml_prediction",
+      severity: p.risk === "red" ? "red" : "yellow",
+      flights: fl,
+      distance: "—",
+      rule_explanation: `[Model-predicted risk] ${p.rationale || "Monitor spacing and paths."}`,
+      suggested_action: p.reroute_hint || "Review vectors vs METAR and wake.",
+    };
+  });
+  const ruleRows = violations.map(enrichViolationForUi);
+  const allAlerts = [...mlRows, ...predRows, ...ruleRows];
+
   if (allAlerts.length === 0) {
     ui.alertsList.innerHTML = '<div class="no-alerts">All clear</div>';
   } else {
+    const policyNarrative = [
+      REROUTE_POLICY_TEXT,
+      multimodalContextFromApi ? ` ${multimodalContextFromApi}` : "",
+      " JSON telemetry is fused with the live map view for multimodal reasoning (Qwen).",
+    ].join("");
     const cardsHtml = allAlerts
       .map((v) => {
         const ruleLabel =
-          v.rule === "wake_turbulence"
-            ? "WAKE"
-            : v.rule === "wake"
+          v.rule === "ml_advisory"
+            ? "QWEN"
+            : v.rule === "ml_prediction"
+              ? "QWEN-PRED"
+            : v.rule === "wake_turbulence"
               ? "WAKE"
-              : v.rule === "path"
-                ? "PATH"
-                : v.rule === "crash"
-                  ? "CRASH"
-                  : v.rule === "minimum_separation" || v.rule === "minimum_separation_predicted"
-                    ? "SEP"
-                    : v.rule === "storm_avoidance_predicted"
-                      ? "WX"
-                      : v.rule === "track_crossing_predicted"
-                        ? "XING"
-                        : v.rule === "separation"
-                          ? "SEP"
-                          : v.rule === "storm"
-                            ? "WX"
-                            : v.rule === "runway_hold_reroute"
-                              ? "HLD"
-                              : String(v.rule).slice(0, 8).toUpperCase();
+              : v.rule === "wake"
+                ? "WAKE"
+                : v.rule === "path"
+                  ? "PATH"
+                  : v.rule === "crash"
+                    ? "CRASH"
+                    : v.rule === "minimum_separation" || v.rule === "minimum_separation_predicted"
+                      ? "SEP"
+                      : v.rule === "storm_avoidance_predicted"
+                        ? "WX"
+                        : v.rule === "track_crossing_predicted"
+                          ? "XING"
+                          : v.rule === "separation"
+                            ? "SEP"
+                            : v.rule === "storm"
+                              ? "WX"
+                              : v.rule === "runway_hold_reroute"
+                                ? "HLD"
+                                : String(v.rule).slice(0, 8).toUpperCase();
         const distRaw = String(v.distance ?? "—");
         const distUi =
           distRaw === "—" || distRaw === "-"
@@ -1509,11 +1554,14 @@ function updateUI() {
             : distRaw.includes("NM")
               ? distRaw
               : `${distRaw} NM`;
+        const flightStr = v.flights?.length ? v.flights.join(" / ") : "—";
+        const extraClass =
+          v.rule === "ml_advisory" || v.rule === "ml_prediction" ? " alert-item-ml" : "";
         return `
-      <div class="alert-item ${v.severity}">
+      <div class="alert-item ${v.severity}${extraClass}">
         <div class="alert-row">
           <span class="alert-rule">${ruleLabel}</span>
-          <span class="alert-flights">${escapeHtml(v.flights.join(" / "))}</span>
+          <span class="alert-flights">${escapeHtml(flightStr)}</span>
           <span class="alert-dist">${escapeHtml(distUi)}</span>
         </div>
         <div class="alert-explain">${escapeHtml(v.rule_explanation)}</div>
@@ -1523,7 +1571,7 @@ function updateUI() {
       })
       .join("");
     ui.alertsList.innerHTML = `
-      <div class="alerts-policy-bar">${escapeHtml(REROUTE_POLICY_TEXT)}</div>
+      <div class="alerts-policy-bar">${escapeHtml(policyNarrative)}</div>
       <div class="alerts-cards">${cardsHtml}</div>`;
   }
 
@@ -1662,6 +1710,9 @@ function runScenario(key) {
   explosions = [];
   scenarioStaticViolations = [];
   aiPanelLatch = { key: "", html: "", lockUntil: 0 };
+  mlAdvisoriesFromApi = [];
+  mlPredictionsFromApi = [];
+  multimodalContextFromApi = "";
 
   if (key === "live") {
     startLiveMode();
@@ -1786,7 +1837,11 @@ function pushSimulationToBackend() {
   if (!raw) return;
   const base = String(raw).replace(/\/$/, "");
   const payload = getSimulationExport();
-  fetch(`${base}/api/simulation/tick`, {
+  const params = new URLSearchParams();
+  if (CONFIG.API_FULL_PIPELINE) params.set("full_pipeline", "true");
+  if (CONFIG.API_ML_ADVISORY) params.set("ml_advisory", "true");
+  const qs = params.toString() ? `?${params.toString()}` : "";
+  fetch(`${base}/api/simulation/tick${qs}`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify(payload),
@@ -1795,7 +1850,25 @@ function pushSimulationToBackend() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.json();
     })
+    .then((data) => {
+      if (Array.isArray(data.ml_advisories)) {
+        mlAdvisoriesFromApi = data.ml_advisories;
+      } else {
+        mlAdvisoriesFromApi = [];
+      }
+      if (Array.isArray(data.model_conflict_predictions)) {
+        mlPredictionsFromApi = data.model_conflict_predictions;
+      } else {
+        mlPredictionsFromApi = [];
+      }
+      multimodalContextFromApi =
+        typeof data.multimodal_context === "string" ? data.multimodal_context.trim() : "";
+      updateUI();
+    })
     .catch((err) => {
+      mlAdvisoriesFromApi = [];
+      mlPredictionsFromApi = [];
+      multimodalContextFromApi = "";
       if (!window.__runwaiApiWarnedOnce) {
         window.__runwaiApiWarnedOnce = true;
         console.warn(

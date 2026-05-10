@@ -1,7 +1,8 @@
 """
-Layer 4 - Model Adapter
+Layer 4 — Model adapter
 
-Interface to the VLM (Qwen) via HuggingFace Inference API.
+Qwen (or other OSS instruct models) via **LangChain** ``ChatOpenAI`` when configured,
+with Hugging Face Inference API or httpx fallbacks (see ``adapter.py``).
 """
 
 from .adapter import call_model
