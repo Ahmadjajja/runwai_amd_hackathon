@@ -38,14 +38,35 @@ const CONFIG = {
   MIN_ZOOM: 0.14,
   MAX_ZOOM: 2.0,
   ZOOM_STEP: 0.1,
-  SPAWN_INTERVAL: 5500,
+  SPAWN_INTERVAL: 7800,
   UPDATE_INTERVAL: 50,
-  MAX_AIRCRAFT: 5,
+  MAX_AIRCRAFT: 3,
   PROJECT_PATH_LEN: 480,
   /** Loss of separation on map (pixels) — also checked via NM */
   CRASH_DIST: 22,
   CRASH_NM: 0.04,
+  /** FastAPI bridge (runwai/server.py). Empty string disables POST. */
+  API_BASE_URL: typeof window !== "undefined" ? window.__RUNWAI_API__ || "http://127.0.0.1:8000" : "",
+  /** Send full simulation JSON to Python every N ms (flight packages + weather + alerts). */
+  API_PUSH_INTERVAL_MS: 2000,
 };
+
+/** Canvas typography tuned for periodic screenshots (ML / GPU inference). */
+const MAP_FONT = {
+  FLIGHT_TAG: "bold 30px monospace",
+  SECTOR_ID: "bold 27px monospace",
+  SECTOR_SUB: "17px monospace",
+  STORM_TITLE: "bold 38px monospace",
+  STORM_SUB: "22px monospace",
+  CONFLICT_NM: "bold 32px monospace",
+  PATH_MARKER: "bold 26px monospace",
+  ARPT_TITLE: "bold 28px sans-serif",
+  LAKE: "italic 22px sans-serif",
+};
+
+/** AI sidebar latch — avoids flicker when advisory text updates every tick. */
+const AI_PANEL_LATCH_MS = 2600;
+let aiPanelLatch = { key: "", html: "", lockUntil: 0 };
 
 // ─── CYYZ-STYLE LAYOUT (stylized 2D map — parallel complex, no crossing finals) ─
 // Real Pearson uses parallel 05/23, 06L/R — we route ALL traffic on parallels only.
@@ -127,6 +148,7 @@ const SECTORS = [
   },
 ];
 
+/** Five discrete sectors used for deterministic reroute / hold advice (screenshot-stable labels). */
 const HOLD_SECTOR_IDS = ["A12", "C03", "E05", "B07", "D14"];
 
 const TAXIWAYS = [
@@ -199,9 +221,113 @@ function findSectorHold(sectorId) {
   return s ? { ...s.hold } : { x: 2000, y: 230 };
 }
 
-function alternateSectorId(currentId) {
-  const pool = HOLD_SECTOR_IDS.filter((id) => id !== currentId);
-  return pool[Math.floor(Math.random() * pool.length)] ?? "A12";
+/** Stable reroute sector per flight — screenshot-friendly (no random flicker). */
+function pickDeterministicRerouteSector(callsign, currentSectorId) {
+  const pool = HOLD_SECTOR_IDS.filter((id) => id !== currentSectorId && id !== "—");
+  if (!pool.length) return "A12";
+  let h = 2166136261;
+  const seed = `${callsign}|${currentSectorId ?? ""}`;
+  for (let i = 0; i < seed.length; i++) h = Math.imul(h ^ seed.charCodeAt(i), 16777619);
+  return pool[Math.abs(h) % pool.length];
+}
+
+const RULE_SORT_PRIORITY = {
+  crash: 0,
+  minimum_separation: 1,
+  minimum_separation_predicted: 2,
+  separation: 1,
+  wake_turbulence: 3,
+  wake: 3,
+  storm_avoidance_predicted: 4,
+  storm: 4,
+  track_crossing_predicted: 5,
+  runway_hold_reroute: 12,
+};
+
+/** Shown above alert cards — matches simulator behavior (hold sectors when runway saturated / wx). */
+const REROUTE_POLICY_TEXT =
+  "If parallel runways are busy or weather threatens the approach, vector aircraft to a safer hold sector (A12, C03, E05, B07, D14) and keep them clear of hazards until landing capacity or METAR improves.";
+
+function violationSortKey(v) {
+  return RULE_SORT_PRIORITY[v.rule] ?? 48;
+}
+
+function sortViolationsStable(list) {
+  return [...list].sort((a, b) => {
+    const pa = violationSortKey(a);
+    const pb = violationSortKey(b);
+    if (pa !== pb) return pa - pb;
+    const fa = (a.flights || []).join(",");
+    const fb = (b.flights || []).join(",");
+    if (fa !== fb) return fa < fb ? -1 : 1;
+    return String(a.rule).localeCompare(String(b.rule));
+  });
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function ruleExplanationFor(rule) {
+  const R = {
+    minimum_separation:
+      "Minimum separation: keep ≥5 NM horizontally and ≥1000 ft vertically between IFR aircraft unless otherwise cleared.",
+    minimum_separation_predicted:
+      "Forecast separation: within ~60 s, predicted tracks drop below horizontal and/or vertical minima unless vectored.",
+    storm_avoidance_predicted:
+      "Weather avoidance: do not penetrate hazardous convection; vector around the cell or hold outside the hazard.",
+    wake_turbulence:
+      "Wake turbulence: lighter aircraft trailing a heavy must stay ≥6 NM in trail with adequate vertical offset.",
+    track_crossing_predicted:
+      "Crossing tracks: projected paths intersect with insufficient vertical spacing at the crossing region.",
+    crash: "Loss of separation on the surface — collision.",
+    separation:
+      "Minimum separation: aircraft closer than rule minima for parallel runway / terminal operations.",
+    storm: "Hazardous weather: turbulence, icing, windshear, or visibility limits near the cell.",
+    wake: "Wake turbulence spacing from heavy aircraft — follower needs trail distance or altitude.",
+    path: "Geometry alert: projected paths converge — verify altitude crossing.",
+    runway_hold_reroute:
+      "Runway saturation: arrival was assigned a published hold in an alternate sector until the assigned runway is available.",
+  };
+  return R[rule] || "Flagged by the RunwAI rules engine.";
+}
+
+function ruleTitleForUi(rule) {
+  const T = {
+    storm_avoidance_predicted: "Storm avoidance (forecast)",
+    minimum_separation_predicted: "Separation (forecast)",
+    minimum_separation: "Minimum separation",
+    wake_turbulence: "Wake turbulence",
+    track_crossing_predicted: "Crossing tracks",
+    crash: "Loss of separation",
+    separation: "Minimum separation",
+    storm: "Weather hazard",
+    wake: "Wake turbulence",
+    runway_hold_reroute: "Runway busy — sector hold",
+  };
+  return T[rule] || String(rule).replace(/_/g, " ");
+}
+
+function enrichViolationForUi(v) {
+  const rule_explanation = v.rule_explanation || ruleExplanationFor(v.rule);
+  let suggested_action = v.suggested_action;
+  if (!suggested_action) {
+    if (v.rule === "storm") {
+      const id = v.flights?.[0];
+      const ac = id ? aircraft.find((a) => a.id === id) : null;
+      const alt = pickDeterministicRerouteSector(id || "UNK", ac?.sector || "E05");
+      suggested_action = `Reroute ${id} to sector ${alt} holding; remain ≥${RULES.MIN_HORIZONTAL_SEP_NM} NM from the hazard until conditions improve.`;
+    } else if (v.rule === "separation") {
+      suggested_action = `Resolve spacing: heading offset or altitude crossing until ≥${RULES.MIN_HORIZONTAL_SEP_NM} NM horizontal and ≥${RULES.MIN_VERTICAL_SEP_FT} ft vertical between flights.`;
+    } else if (v.rule === "wake") {
+      suggested_action = `Wake spacing: extend trail to ≥6 NM or climb follower +1000 ft above heavy wake path before re-joining route.`;
+    }
+  }
+  return { ...v, rule_explanation, suggested_action };
 }
 
 function syncAircraftGeo(ac) {
@@ -298,18 +424,24 @@ function getSimulationExport() {
 
 function rerouteForStorm(acId, etaSec) {
   const ac = aircraft.find((a) => a.id === acId);
-  const alt = alternateSectorId(ac?.sector || "E05");
-  return `Vector ${acId} onto sector ${alt} holding pattern; forecast entry into mesoscale cell in ~${etaSec}s — maintain ≥${RULES.MIN_HORIZONTAL_SEP_NM} NM from hazard. Visibility ${weather.visibility_sm} SM / ceiling ${weather.ceiling_ft} ft.`;
+  const alt = pickDeterministicRerouteSector(acId, ac?.sector || "E05");
+  const eta = Math.round(Number(etaSec) || 0);
+  return `Weather reroute: vector ${acId} to safer sector ${alt} (hold or orbit) until the cell is clear — same policy as busy-runway holds. Forecast penetration ~${eta}s if unchanged — stay ≥${RULES.MIN_HORIZONTAL_SEP_NM} NM from hazard. METAR: ${weather.visibility_sm} SM / ceiling ${weather.ceiling_ft} ft.`;
 }
 
 function rerouteForSeparation(ids, evidence, crossedTracks) {
   const [a, b] = ids;
   const cross = crossedTracks ? " Crossing projected tracks." : "";
-  return `Minimum separation (${RULES.MIN_HORIZONTAL_SEP_NM} NM horizontal AND ${RULES.MIN_VERTICAL_SEP_FT} ft vertical): resolve via heading offset or altitude crossing.${cross} Vector ${b} to restore spacing vs ${a}.`;
+  return `Separation reroute: turn or climb/descend until ≥${RULES.MIN_HORIZONTAL_SEP_NM} NM and ≥${RULES.MIN_VERTICAL_SEP_FT} ft.${cross} Vector ${b} to restore spacing vs ${a}; if finals are saturated, extend vectors in a clear sector until spacing allows.`;
 }
 
 function rerouteForWake(leader, follower, ev) {
   return `Wake turbulence: increase trail to ≥6 NM or assign ${follower} +1000 ft above ${leader} wake path. Trail ${ev.trail_nm.toFixed(2)} NM, alt below leader ${ev.alt_below_ft.toFixed(0)} ft.`;
+}
+
+function suggestedHoldReroute(ac) {
+  const hs = ac.holdSector || ac.sector || "E05";
+  return `Busy runway / saturation: hold in sector ${hs} until runway ${ac.runway} is released, then continue approach. If weather or queues persist, extend vectors in a clear sector until METAR and spacing allow (same policy as storm reroutes).`;
 }
 
 /** ~30% of map area; random phenomenon; METAR-like envelope + storm_sectors for training JSON */
@@ -430,7 +562,7 @@ function drawLakeOntario() {
     ctx.fillRect(wx, CONFIG.AIRPORT_HEIGHT - 200 + (i % 5) * 8, 80, 3);
   }
   ctx.fillStyle = "rgba(180, 210, 240, 0.5)";
-  ctx.font = "italic 13px sans-serif";
+  ctx.font = MAP_FONT.LAKE;
   ctx.textAlign = "right";
   ctx.fillText("Lake Ontario (south)", CONFIG.AIRPORT_WIDTH - 28, CONFIG.AIRPORT_HEIGHT - 28);
 }
@@ -448,16 +580,35 @@ function drawSectors() {
     ctx.setLineDash([12, 8]);
     ctx.stroke();
     ctx.setLineDash([]);
+  });
+}
+
+/** Drawn after taxiways/runways so IDs stay visible; stroked text reads over roads. */
+function drawSectorLabels() {
+  ctx.save();
+  ctx.lineJoin = "round";
+  ctx.miterLimit = 2;
+  ctx.textBaseline = "middle";
+  SECTORS.forEach((s) => {
     const cx = s.poly.reduce((a, p) => a + p[0], 0) / s.poly.length;
     const cy = s.poly.reduce((a, p) => a + p[1], 0) / s.poly.length;
-    ctx.fillStyle = "rgba(200, 220, 255, 0.85)";
-    ctx.font = "bold 14px monospace";
+    const sub = s.label.replace(/^.*? /, "");
     ctx.textAlign = "center";
+    ctx.font = MAP_FONT.SECTOR_ID;
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = "rgba(8, 10, 18, 0.92)";
+    ctx.fillStyle = "rgba(245, 250, 255, 0.98)";
+    ctx.strokeText(s.id, cx, cy);
     ctx.fillText(s.id, cx, cy);
-    ctx.font = "11px monospace";
-    ctx.fillStyle = "rgba(160, 180, 210, 0.75)";
-    ctx.fillText(s.label.replace(/^.*? /, ""), cx, cy + 14);
+    ctx.font = MAP_FONT.SECTOR_SUB;
+    const subY = cy + 26;
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = "rgba(8, 10, 18, 0.88)";
+    ctx.fillStyle = "rgba(200, 218, 240, 0.96)";
+    ctx.strokeText(sub, cx, subY);
+    ctx.fillText(sub, cx, subY);
   });
+  ctx.restore();
 }
 
 function drawGround() {
@@ -485,7 +636,7 @@ function drawGround() {
   ctx.lineTo(3880, 68);
   ctx.stroke();
   ctx.fillStyle = "rgba(255, 200, 80, 0.35)";
-  ctx.font = "11px monospace";
+  ctx.font = "17px monospace";
   ctx.textAlign = "left";
   ctx.fillText("401", 180, 78);
 
@@ -510,7 +661,7 @@ function drawGround() {
   ctx.fillRect(1146, 526, 36, 26);
 
   ctx.fillStyle = "rgba(230, 240, 255, 0.9)";
-  ctx.font = "bold 16px sans-serif";
+  ctx.font = MAP_FONT.ARPT_TITLE;
   ctx.textAlign = "left";
   ctx.fillText("Toronto Pearson (CYYZ)", 828, 448);
 
@@ -588,7 +739,7 @@ function drawRunway(rwy) {
     ctx.setLineDash([]);
   } else {
     ctx.fillStyle = "rgba(200, 200, 210, 0.5)";
-    ctx.font = "11px monospace";
+    ctx.font = "17px monospace";
     ctx.textAlign = "center";
     ctx.fillText("visual", length / 2, -width / 2 - 8);
   }
@@ -608,7 +759,7 @@ function drawRunway(rwy) {
   }
 
   ctx.fillStyle = "rgba(255, 255, 255, 0.82)";
-  ctx.font = `bold ${active ? 22 : 16}px monospace`;
+  ctx.font = `bold ${active ? 30 : 22}px monospace`;
   ctx.textAlign = "center";
   const nums = id.split("/");
   ctx.fillText(nums[0], 52, 7);
@@ -699,13 +850,21 @@ function drawWeatherStorm() {
     }
   }
 
-  ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
-  ctx.font = "bold 15px monospace";
   ctx.textAlign = "center";
-  ctx.fillText(z.label, cx, cy + 6);
-  ctx.font = "11px monospace";
-  ctx.fillStyle = "rgba(220, 230, 245, 0.75)";
-  ctx.fillText("Mesoscale cell (~30% area)", cx, cy + 24);
+  ctx.lineJoin = "round";
+  ctx.font = MAP_FONT.STORM_TITLE;
+  ctx.lineWidth = 7;
+  ctx.strokeStyle = "rgba(6, 10, 18, 0.92)";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.97)";
+  ctx.strokeText(z.label, cx, cy + 8);
+  ctx.fillText(z.label, cx, cy + 8);
+  ctx.font = MAP_FONT.STORM_SUB;
+  ctx.lineWidth = 5;
+  const subY = cy + 38;
+  ctx.strokeStyle = "rgba(6, 10, 18, 0.88)";
+  ctx.fillStyle = "rgba(220, 230, 245, 0.88)";
+  ctx.strokeText("Mesoscale cell (~30% area)", cx, subY);
+  ctx.fillText("Mesoscale cell (~30% area)", cx, subY);
 
   ctx.restore();
 }
@@ -741,6 +900,7 @@ function spawnAircraft() {
   const type = AIRCRAFT_TYPES[Math.floor(Math.random() * AIRCRAFT_TYPES.length)];
   const prefix = CALLSIGNS[Math.floor(Math.random() * CALLSIGNS.length)];
   const num = Math.floor(Math.random() * 700) + 200;
+  const id = `${prefix}${num}`;
   const rwy = pickRunwaySlot();
   const thr = runwayThreshold(rwy);
   const depart = Math.random() > 0.48;
@@ -749,7 +909,7 @@ function spawnAircraft() {
     const startX = thr.x - 80;
     const startY = thr.y + (Math.random() * 10 - 5);
     const ac = {
-      id: `${prefix}${num}`,
+      id,
       type: type.code,
       weight: type.weight,
       size: type.size,
@@ -778,12 +938,12 @@ function spawnAircraft() {
   } else {
     const startX = -120;
     const startY = thr.y + (Math.random() * 36 - 18);
-    const holdSector =
-      HOLD_SECTOR_IDS[Math.floor(Math.random() * HOLD_SECTOR_IDS.length)];
+    const startSector = sectorAtPoint(startX, startY);
+    const holdSector = pickDeterministicRerouteSector(id, startSector || "C03");
     const busy = isRunwayBusy(rwy.id, time);
 
     const ac = {
-      id: `${prefix}${num}`,
+      id,
       type: type.code,
       weight: type.weight,
       size: type.size,
@@ -916,7 +1076,8 @@ function evaluateAirspaceDynamics() {
           rule: "storm_avoidance_predicted",
           flights: [ac.id],
           severity: severityFromConfidence(conf),
-          distance: `${intr.distance_nm.toFixed(2)} NM`,
+          distance: intr.distance_nm.toFixed(2),
+          rule_explanation: ruleExplanationFor("storm_avoidance_predicted"),
           evidence: { ...intr, storm: weather.storm_geo },
           suggested_action: rerouteForStorm(ac.id, intr.eta_sec),
         });
@@ -937,6 +1098,7 @@ function evaluateAirspaceDynamics() {
           flights: [a.id, b.id],
           severity: severityFromConfidence(conf),
           distance: nm.toFixed(2),
+          rule_explanation: ruleExplanationFor("minimum_separation"),
           evidence: { distance_nm: nm, alt_diff_ft: ad, scope: "current" },
           suggested_action: rerouteForSeparation(
             [a.id, b.id],
@@ -958,6 +1120,7 @@ function evaluateAirspaceDynamics() {
           flights: [a.id, b.id],
           severity: severityFromConfidence(conf),
           distance: pc.distance_nm.toFixed(2),
+          rule_explanation: ruleExplanationFor("minimum_separation_predicted"),
           evidence: { ...pc, scope: "predicted_60s" },
           suggested_action: rerouteForSeparation(
             [a.id, b.id],
@@ -998,6 +1161,7 @@ function evaluateAirspaceDynamics() {
             flights: [a.id, b.id],
             severity: "yellow",
             distance: nmp.toFixed(2),
+            rule_explanation: ruleExplanationFor("track_crossing_predicted"),
             evidence: { alt_diff_ft: adp, distance_nm: nmp, scope: "geometry" },
             suggested_action: rerouteForSeparation([a.id, b.id], { alt_diff_ft: adp, distance_nm: nmp }, true),
             ix: hit.x,
@@ -1017,6 +1181,7 @@ function evaluateAirspaceDynamics() {
             flights: [a.id, b.id],
             severity: severityFromConfidence(ev.confidence),
             distance: ev.trail_nm.toFixed(2),
+            rule_explanation: ruleExplanationFor("wake_turbulence"),
             evidence: ev,
             suggested_action: rerouteForWake(a.id, b.id, ev),
           });
@@ -1033,11 +1198,25 @@ function evaluateAirspaceDynamics() {
             flights: [b.id, a.id],
             severity: severityFromConfidence(ev.confidence),
             distance: ev.trail_nm.toFixed(2),
+            rule_explanation: ruleExplanationFor("wake_turbulence"),
             evidence: ev,
             suggested_action: rerouteForWake(b.id, a.id, ev),
           });
         }
       }
+    }
+  }
+
+  for (const ac of aircraft) {
+    if (ac.phase === "HOLD" && ac.rerouted && ac.holdSector) {
+      out.push({
+        rule: "runway_hold_reroute",
+        flights: [ac.id],
+        severity: "yellow",
+        distance: "—",
+        rule_explanation: ruleExplanationFor("runway_hold_reroute"),
+        suggested_action: suggestedHoldReroute(ac),
+      });
     }
   }
 
@@ -1087,7 +1266,7 @@ function checkCrashes() {
 function checkConflicts(crashViolations) {
   const dyn = evaluateAirspaceDynamics();
   const base = currentMode === "live" ? [] : scenarioStaticViolations.slice();
-  violations = [...base, ...crashViolations, ...dyn];
+  violations = sortViolationsStable([...base, ...crashViolations, ...dyn]);
 }
 
 function drawProjectedPaths() {
@@ -1196,14 +1375,16 @@ function drawAircraft(ac) {
   ctx.restore();
 
   ctx.fillStyle = "rgba(0, 0, 0, 0.78)";
-  roundRect(ctx, ac.x - 34, ac.y + 28, 72, 22, 4);
+  roundRect(ctx, ac.x - 62, ac.y + 30, 132, 38, 6);
   ctx.fill();
   ctx.fillStyle = isPath ? "#ffb088" : "#ffffff";
-  ctx.font = "bold 11px monospace";
+  ctx.font = MAP_FONT.FLIGHT_TAG;
   ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
   const phaseTag =
     ac.phase === "HOLD" ? "HOLD" : ac.phase === "VECTOR" ? "VEC" : ac.phase.slice(0, 3);
-  ctx.fillText(`${ac.id} · ${phaseTag}`, ac.x, ac.y + 43);
+  ctx.fillText(`${ac.id} · ${phaseTag}`, ac.x, ac.y + 49);
+  ctx.textBaseline = "alphabetic";
 }
 
 function drawConflictLines() {
@@ -1225,10 +1406,16 @@ function drawConflictLines() {
         ctx.setLineDash([]);
         const mx = (ac1.x + ac2.x) / 2;
         const my = (ac1.y + ac2.y) / 2;
-        ctx.fillStyle = "rgba(255, 80, 80, 0.95)";
-        ctx.font = "bold 13px monospace";
+        ctx.font = MAP_FONT.CONFLICT_NM;
         ctx.textAlign = "center";
-        ctx.fillText(`${v.distance} NM`, mx, my - 10);
+        ctx.lineJoin = "round";
+        const distRaw = String(v.distance ?? "—");
+        const distLabel = distRaw.includes("NM") ? distRaw : `${distRaw} NM`;
+        ctx.lineWidth = 6;
+        ctx.strokeStyle = "rgba(10, 8, 12, 0.92)";
+        ctx.strokeText(distLabel, mx, my - 14);
+        ctx.fillStyle = "rgba(255, 80, 80, 0.98)";
+        ctx.fillText(distLabel, mx, my - 14);
       }
     }
   });
@@ -1243,10 +1430,14 @@ function drawTrajectoryCrossMarkers() {
     ctx.beginPath();
     ctx.arc(t.ix, t.iy, 16 + pulse * 6, 0, Math.PI * 2);
     ctx.stroke();
-    ctx.fillStyle = "rgba(255, 100, 100, 0.95)";
-    ctx.font = "bold 12px monospace";
+    ctx.font = MAP_FONT.PATH_MARKER;
     ctx.textAlign = "center";
-    ctx.fillText("PATH X", t.ix, t.iy - 22);
+    ctx.lineJoin = "round";
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = "rgba(10, 8, 12, 0.9)";
+    ctx.strokeText("PATH X", t.ix, t.iy - 28);
+    ctx.fillStyle = "rgba(255, 100, 100, 0.96)";
+    ctx.fillText("PATH X", t.ix, t.iy - 28);
   });
 }
 
@@ -1283,84 +1474,126 @@ function updateUI() {
   }
   ui.alertsPanel.classList.toggle("has-alerts", alertCount > 0);
 
-  const allAlerts = [...violations];
+  const allAlerts = violations.map(enrichViolationForUi);
   if (allAlerts.length === 0) {
     ui.alertsList.innerHTML = '<div class="no-alerts">All clear</div>';
   } else {
-    ui.alertsList.innerHTML = allAlerts
+    const cardsHtml = allAlerts
       .map((v) => {
         const ruleLabel =
           v.rule === "wake_turbulence"
             ? "WAKE"
             : v.rule === "wake"
               ? "WAKE"
-            : v.rule === "path"
-              ? "PATH"
-              : v.rule === "crash"
-                ? "CRASH"
-              : v.rule === "minimum_separation" || v.rule === "minimum_separation_predicted"
-                ? "SEP"
-              : v.rule === "storm_avoidance_predicted"
-                ? "WX"
-              : v.rule === "track_crossing_predicted"
-                ? "XING"
-              : v.rule === "separation"
-                ? "SEP"
-              : v.rule === "storm"
-                ? "WX"
-              : String(v.rule).slice(0, 8).toUpperCase();
+              : v.rule === "path"
+                ? "PATH"
+                : v.rule === "crash"
+                  ? "CRASH"
+                  : v.rule === "minimum_separation" || v.rule === "minimum_separation_predicted"
+                    ? "SEP"
+                    : v.rule === "storm_avoidance_predicted"
+                      ? "WX"
+                      : v.rule === "track_crossing_predicted"
+                        ? "XING"
+                        : v.rule === "separation"
+                          ? "SEP"
+                          : v.rule === "storm"
+                            ? "WX"
+                            : v.rule === "runway_hold_reroute"
+                              ? "HLD"
+                              : String(v.rule).slice(0, 8).toUpperCase();
+        const distRaw = String(v.distance ?? "—");
+        const distUi =
+          distRaw === "—" || distRaw === "-"
+            ? "—"
+            : distRaw.includes("NM")
+              ? distRaw
+              : `${distRaw} NM`;
         return `
       <div class="alert-item ${v.severity}">
-        <span class="alert-rule">${ruleLabel}</span>
-        <span class="alert-flights">${v.flights.join(" / ")}</span>
-        <span class="alert-dist">${v.distance ?? "—"}</span>
+        <div class="alert-row">
+          <span class="alert-rule">${ruleLabel}</span>
+          <span class="alert-flights">${escapeHtml(v.flights.join(" / "))}</span>
+          <span class="alert-dist">${escapeHtml(distUi)}</span>
+        </div>
+        <div class="alert-explain">${escapeHtml(v.rule_explanation)}</div>
+        <div class="alert-advice"><span class="alert-advice-label">Reroute / advice:</span> ${escapeHtml(v.suggested_action || "Review routing and altitude.")}</div>
       </div>
     `;
       })
       .join("");
+    ui.alertsList.innerHTML = `
+      <div class="alerts-policy-bar">${escapeHtml(REROUTE_POLICY_TEXT)}</div>
+      <div class="alerts-cards">${cardsHtml}</div>`;
   }
 
-  if (violations.some((v) => v.rule === "crash")) {
-    const c = violations.find((x) => x.rule === "crash");
+  const crash = violations.find((x) => x.rule === "crash");
+  const sorted = sortViolationsStable(violations);
+  const now = Date.now();
+
+  if (crash) {
+    aiPanelLatch = { key: "", html: "", lockUntil: 0 };
     ui.aiContent.innerHTML = `
-      <div class="ai-action">
-        <div class="ai-target">${c.flights.join(" / ")}</div>
-        <div class="ai-command">LOSS OF SEP</div>
-        <div class="ai-reason">Collision — incident response</div>
+      <div class="ai-action ai-action--crash">
+        <div class="ai-target">${escapeHtml(crash.flights.join(" / "))}</div>
+        <div class="ai-command">${escapeHtml(ruleTitleForUi("crash"))}</div>
+        <div class="ai-explain">${escapeHtml(ruleExplanationFor("crash"))}</div>
+        <div class="ai-advice"><span class="ai-advice-label">Advice:</span> Emergency / incident response per ops — all conflicting traffic stop.</div>
       </div>
     `;
   } else {
-    const top = violations.find((v) => v.suggested_action);
-    if (top?.suggested_action) {
-      ui.aiContent.innerHTML = `
+    const top = sorted.find((v) => v.suggested_action && v.rule !== "crash");
+    const pathHit = trajectoryAlerts[0];
+
+    let key = "";
+    let nextHtml = "";
+
+    if (top) {
+      key = `v:${top.rule}:${(top.flights || []).slice().sort().join("/")}`;
+      const exp = top.rule_explanation || ruleExplanationFor(top.rule);
+      nextHtml = `
       <div class="ai-action">
-        <div class="ai-target">${top.flights.join(" / ")}</div>
-        <div class="ai-command">${top.rule.replace(/_/g, " ")}</div>
-        <div class="ai-reason" style="font-size:0.72rem;text-align:left;line-height:1.35">${top.suggested_action}</div>
-      </div>
-    `;
-    } else if (trajectoryAlerts[0]) {
-      const pathHit = trajectoryAlerts[0];
-      ui.aiContent.innerHTML = `
+        <div class="ai-target">${escapeHtml(top.flights.join(" / "))}</div>
+        <div class="ai-command">${escapeHtml(ruleTitleForUi(top.rule))}</div>
+        <div class="ai-explain">${escapeHtml(exp)}</div>
+        <div class="ai-advice"><span class="ai-advice-label">Advice:</span> ${escapeHtml(top.suggested_action)}</div>
+      </div>`;
+    } else if (pathHit) {
+      key = `path:${(pathHit.flights || []).slice().sort().join("&")}`;
+      nextHtml = `
       <div class="ai-action">
-        <div class="ai-target">${pathHit.flights.join(" & ")}</div>
-        <div class="ai-command">TRACK GEOMETRY</div>
-        <div class="ai-reason">Projected paths converge — verify altitude crossing</div>
-      </div>
-    `;
-    } else if (violations.length > 0) {
-      const v = violations.filter((x) => x.rule !== "crash")[0];
-      if (v) {
-        ui.aiContent.innerHTML = `
-      <div class="ai-action">
-        <div class="ai-target">${v.flights.join(" / ")}</div>
-        <div class="ai-command">ALERT</div>
-        <div class="ai-reason">${v.rule}</div>
-      </div>
-    `;
-      }
+        <div class="ai-target">${escapeHtml(pathHit.flights.join(" & "))}</div>
+        <div class="ai-command">Track geometry</div>
+        <div class="ai-explain">${escapeHtml(ruleExplanationFor("path"))}</div>
+        <div class="ai-advice"><span class="ai-advice-label">Advice:</span> Verify altitude crossing or assign offset vectors before paths merge.</div>
+      </div>`;
     } else {
-      ui.aiContent.innerHTML = '<div class="ai-idle">Monitoring CYYZ…</div>';
+      const rest = sorted.filter((x) => x.rule !== "crash");
+      const v = rest[0];
+      if (v) {
+        const ev = enrichViolationForUi(v);
+        key = `fallback:${v.rule}:${(v.flights || []).slice().sort().join("/")}`;
+        nextHtml = `
+      <div class="ai-action">
+        <div class="ai-target">${escapeHtml(v.flights.join(" / "))}</div>
+        <div class="ai-command">${escapeHtml(ruleTitleForUi(v.rule))}</div>
+        <div class="ai-explain">${escapeHtml(ev.rule_explanation)}</div>
+        <div class="ai-advice"><span class="ai-advice-label">Advice:</span> ${escapeHtml(ev.suggested_action || "Review aircraft tracks.")}</div>
+      </div>`;
+      } else {
+        key = "idle";
+        nextHtml = '<div class="ai-idle">Monitoring CYYZ…</div>';
+      }
+    }
+
+    if (key === "idle") {
+      aiPanelLatch = { key: "", html: "", lockUntil: 0 };
+      ui.aiContent.innerHTML = nextHtml;
+    } else if (key === aiPanelLatch.key && now < aiPanelLatch.lockUntil && aiPanelLatch.html) {
+      ui.aiContent.innerHTML = aiPanelLatch.html;
+    } else {
+      aiPanelLatch = { key, html: nextHtml, lockUntil: now + AI_PANEL_LATCH_MS };
+      ui.aiContent.innerHTML = nextHtml;
     }
   }
 
@@ -1390,6 +1623,7 @@ function render() {
   drawTaxiways();
   RUNWAYS.forEach(drawRunway);
   drawWeatherStorm();
+  drawSectorLabels();
   drawProjectedPaths();
   drawTrajectoryCrossMarkers();
   drawConflictLines();
@@ -1427,6 +1661,7 @@ function runScenario(key) {
   trajectoryAlerts = [];
   explosions = [];
   scenarioStaticViolations = [];
+  aiPanelLatch = { key: "", html: "", lockUntil: 0 };
 
   if (key === "live") {
     startLiveMode();
@@ -1544,12 +1779,41 @@ document.getElementById("scenarioSelect").onchange = (e) => {
   runScenario(e.target.value);
 };
 
+// ─── PYTHON API (Layer 7 → FastAPI bridge) ──────────────────────────────────
+
+function pushSimulationToBackend() {
+  const raw = CONFIG.API_BASE_URL;
+  if (!raw) return;
+  const base = String(raw).replace(/\/$/, "");
+  const payload = getSimulationExport();
+  fetch(`${base}/api/simulation/tick`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(payload),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .catch((err) => {
+      if (!window.__runwaiApiWarnedOnce) {
+        window.__runwaiApiWarnedOnce = true;
+        console.warn(
+          "[RunwAI] API unreachable — run: uvicorn runwai.server:app --reload --host 127.0.0.1 --port 8000",
+          err.message || err,
+        );
+      }
+    });
+}
+
 // ─── INIT ───────────────────────────────────────────────────────────────────
 
 resizeCanvas();
 render();
 setInterval(update, CONFIG.UPDATE_INTERVAL);
 startLiveMode();
+setInterval(pushSimulationToBackend, CONFIG.API_PUSH_INTERVAL_MS);
+pushSimulationToBackend();
 
 /** Training / evaluation JSON (includes lat/lon track_history, weather envelope) */
 window.__runwaiTrainingExport = () => JSON.stringify(getSimulationExport(), null, 2);

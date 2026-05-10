@@ -77,6 +77,19 @@ python -m http.server 8080
 # Open http://localhost:8080
 ```
 
+### FastAPI bridge (frontend ↔ Python rules)
+
+Terminal 1 — API server (from **repository root**, after `pip install -r requirements.txt`):
+
+```bash
+uvicorn runwai.server:app --reload --host 127.0.0.1 --port 8000
+```
+
+- `GET http://127.0.0.1:8000/health` — health check  
+- `POST http://127.0.0.1:8000/api/simulation/tick` — body = JSON from the frontend (`getSimulationExport()` shape: aircraft, weather, alerts)
+
+The browser sends this package **every 2 seconds** by default (`CONFIG.API_PUSH_INTERVAL_MS` in `frontend/main.js`). Override base URL before load: `window.__RUNWAI_API__ = 'http://127.0.0.1:8000'` or set `CONFIG.API_BASE_URL` to `''` to disable pushes.
+
 ## Data Flow
 
 ```
