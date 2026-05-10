@@ -1,13 +1,33 @@
-output/
-venv/
-.venv/
-__pycache__/
-*.pyc
-*.pyo
-.env
-.DS_Store
+# IDE
+.vscode/
+.idea/
+
+# Testing/Debug
+.playwright-mcp/
+*.png
 *.jpg
 *.jpeg
-*.png
 *.mp4
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+.env
+
+# Archives
+*.zip
+
+# Output / generated
+output/
+
+# Misc
+transcript.txt
+demo.py
+.DS_Store
 .claude/

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RunwAI - Live Airport Simulation</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Header Bar -->
+      <header class="header">
+        <div class="logo">
+          <span class="logo-icon">✈</span>
+          <span class="logo-text">RunwAI</span>
+        </div>
+        <div class="header-stats">
+          <div class="stat">
+            <span class="stat-value" id="aircraftCount">0</span>
+            <span class="stat-label">Aircraft</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="violationCount">0</span>
+            <span class="stat-label">Alerts</span>
+          </div>
+          <div class="stat weather-stat">
+            <span class="stat-value" id="windValue">-</span>
+            <span class="stat-label">Wind</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="latencyValue">-</span>
+            <span class="stat-label">Latency</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="confidenceValue">-</span>
+            <span class="stat-label">AI Conf</span>
+          </div>
+        </div>
+        <div class="header-status" id="headerStatus">
+          <span class="status-indicator"></span>
+          <span class="status-text">LIVE</span>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main">
+        <!-- Airport Map -->
+        <div class="map-wrapper">
+          <div class="map-container" id="mapContainer">
+            <canvas id="airportCanvas"></canvas>
+          </div>
+          
+          <!-- Zoom Controls -->
+          <div class="zoom-controls">
+            <button id="zoomIn" class="zoom-btn">+</button>
+            <span class="zoom-level" id="zoomLevel">100%</span>
+            <button id="zoomOut" class="zoom-btn">-</button>
+            <button id="zoomReset" class="zoom-btn reset">⟲</button>
+          </div>
+
+          <!-- Mini Legend -->
+          <div class="mini-legend">
+            <div class="legend-row"><span class="dot green"></span> Clear</div>
+            <div class="legend-row"><span class="dot yellow"></span> Warning</div>
+            <div class="legend-row"><span class="dot red"></span> Conflict</div>
+          </div>
+
+          <!-- Storm Warning Overlay -->
+          <div class="storm-banner" id="stormBanner">
+            <span>⛈ STORM WARNING ACTIVE</span>
+          </div>
+        </div>
+
+        <!-- Side Panel -->
+        <aside class="side-panel">
+          <!-- Scenario Selector -->
+          <div class="scenario-box">
+            <select id="scenarioSelect">
+              <option value="live">Live Simulation</option>
+              <option value="separation">Scenario: Runway Incursion</option>
+              <option value="storm">Scenario: Storm Approach</option>
+              <option value="wake">Scenario: Wake Turbulence</option>
+            </select>
+            <button id="runBtn" class="run-btn">▶ RUN</button>
+          </div>
+
+          <!-- Alerts Panel -->
+          <div class="panel alerts-panel" id="alertsPanel">
+            <div class="panel-header">
+              <span class="panel-icon">⚠</span>
+              <span>Alerts</span>
+            </div>
+            <div class="alerts-list" id="alertsList">
+              <div class="no-alerts">All clear</div>
+            </div>
+          </div>
+
+          <!-- AI Action Panel -->
+          <div class="panel ai-panel" id="aiPanel">
+            <div class="panel-header">
+              <span class="panel-icon">🤖</span>
+              <span>AI Action</span>
+            </div>
+            <div class="ai-content" id="aiContent">
+              <div class="ai-idle">Monitoring...</div>
+            </div>
+          </div>
+
+          <!-- Active Flights -->
+          <div class="panel flights-panel">
+            <div class="panel-header">
+              <span class="panel-icon">📋</span>
+              <span>Flights</span>
+            </div>
+            <div class="flights-list" id="flightsList"></div>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
