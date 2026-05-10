@@ -272,6 +272,109 @@ def preview_frames_only(every_n_sec: int = 30) -> None:
             print(f"    [{f['timestamp_fmt']}] {f['frame_path']}")
 
 
+# ── YouTube download via yt-dlp ───────────────────────────────────────────────
+
+def download_youtube(url: str, output_path: Optional[str] = None) -> str:
+    """
+    Download a YouTube video (or live stream segment) using yt-dlp.
+    Returns path to the downloaded file, or "" on failure.
+
+    Set YT_STREAM_URL env var to auto-download on startup.
+    """
+    import subprocess
+
+    if output_path is None:
+        _ensure_dirs()
+        output_path = os.path.join(OUTPUT_DIR, "yt_stream.%(ext)s")
+
+    cmd = [
+        "yt-dlp",
+        "-f", "best[height<=720]/best",
+        "--no-playlist",
+        "-o", output_path,
+        url,
+    ]
+    print(f"[yt-dlp] Downloading: {url}")
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"[yt-dlp] Error: {result.stderr[:300]}")
+        return ""
+
+    # Resolve the actual filename (yt-dlp replaces %(ext)s)
+    for ext in ("mp4", "webm", "mkv"):
+        candidate = output_path.replace("%(ext)s", ext)
+        if os.path.exists(candidate):
+            print(f"[yt-dlp] Downloaded → {candidate}")
+            return candidate
+    return output_path
+
+
+def ingest_youtube_stream(url: str) -> Optional[str]:
+    """
+    Download a YouTube video, extract frames + transcript, return processed JSON path.
+    Skips download if the file already exists.
+    """
+    _ensure_dirs()
+    dest = os.path.join(OUTPUT_DIR, "yt_stream.mp4")
+
+    if not os.path.exists(dest):
+        dest = download_youtube(url, os.path.join(OUTPUT_DIR, "yt_stream.%(ext)s"))
+        if not dest:
+            return None
+
+    # Temporarily register this video so process_video picks it up
+    VIDEO_LABELS[dest] = "yt_stream"
+    result = process_video(dest, every_n_sec=FRAME_EVERY, transcribe=True)
+    out_path = os.path.join(OUTPUT_DIR, "yt_stream_processed.json")
+    return out_path if os.path.exists(out_path) else None
+
+
+# ── Latest frame helper ───────────────────────────────────────────────────────
+
+def get_latest_frame() -> Optional[str]:
+    """
+    Return the path of the best available frame from already-processed video.
+
+    Reads output/frames_with_transcript.json (or any *_processed.json).
+    Returns a frame from the middle of the video for maximum visual context.
+    Returns None if no processed frames exist.
+    """
+    _ensure_dirs()
+
+    # Try the primary output files in order of preference
+    candidates = [
+        Path(OUTPUT_DIR) / "frames_with_transcript.json",
+        *sorted(Path(OUTPUT_DIR).glob("*_processed.json")),
+    ]
+
+    for json_path in candidates:
+        if not json_path.exists():
+            continue
+        try:
+            with open(json_path) as f:
+                data = json.load(f)
+
+            # Handle both flat array and nested {"data": [...]} formats
+            frames = data if isinstance(data, list) else data.get("data", [])
+            if not frames:
+                continue
+
+            # Pick the middle frame for best runway context
+            entry = frames[len(frames) // 2]
+            frame_path = entry.get("frame_path")
+            if frame_path and Path(frame_path).exists():
+                return frame_path
+        except Exception:
+            continue
+
+    # Last resort: pick any .jpg directly from frames dir
+    frame_files = sorted(Path(FRAMES_DIR).glob("*.jpg"))
+    if frame_files:
+        return str(frame_files[len(frame_files) // 2])
+
+    return None
+
+
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":

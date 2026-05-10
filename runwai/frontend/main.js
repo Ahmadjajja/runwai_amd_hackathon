@@ -1,9 +1,157 @@
 /**
  * RunwAI - Live Airport Surface Simulation
  * Full airport map with zoom/pan and live plane movement
+ *
+ * Data sources (in priority order):
+ *   1. Backend API  (/api/tick, /api/scenario/:name)  — real pipeline data
+ *   2. mockScenarios.js                               — offline / no-server fallback
  */
 
 import { scenarios, getScenario } from "./mockScenarios.js";
+
+// ─── BACKEND API ─────────────────────────────────────────────────────────────
+
+const API_BASE = "";  // same origin — server.py serves both API + static files
+let apiAvailable = null;  // null = untested, true/false after first check
+let liveTickInterval = null;
+
+// CYYZ tight bounding box — zoomed into airport footprint so aircraft spread across the map
+const BOUNDS = { latMin: 43.577, latMax: 43.777, lonMin: -79.750, lonMax: -79.500 };
+
+function latLonToCanvas(lat, lon) {
+  const x = ((lon - BOUNDS.lonMin) / (BOUNDS.lonMax - BOUNDS.lonMin)) * CONFIG.AIRPORT_WIDTH;
+  const y = (1 - (lat - BOUNDS.latMin) / (BOUNDS.latMax - BOUNDS.latMin)) * CONFIG.AIRPORT_HEIGHT;
+  return { x, y };
+}
+
+async function checkApiAvailable() {
+  try {
+    const res = await fetch(`${API_BASE}/api/status`, { signal: AbortSignal.timeout(2000) });
+    apiAvailable = res.ok;
+  } catch {
+    apiAvailable = false;
+  }
+  console.log(`[RunwAI] Backend API ${apiAvailable ? "available ✓" : "unavailable — using mock data"}`);
+  return apiAvailable;
+}
+
+async function fetchApiTick() {
+  const res = await fetch(`${API_BASE}/api/tick`, { signal: AbortSignal.timeout(60000) });
+  if (!res.ok) throw new Error(`API error ${res.status}`);
+  return res.json();
+}
+
+async function fetchApiScenario(name) {
+  const res = await fetch(`${API_BASE}/api/scenario/${name}`, { signal: AbortSignal.timeout(60000) });
+  if (!res.ok) throw new Error(`API error ${res.status}`);
+  return res.json();
+}
+
+function applyBackendData(data) {
+  if (!data) return;
+
+  // Map backend flights → canvas aircraft
+  aircraft = (data.flights || []).map(f => {
+    const pos = latLonToCanvas(f.latitude, f.longitude);
+    // Project 30s ahead for target position
+    const headingRad = (f.heading_deg * Math.PI) / 180;
+    const speedPx = (f.speed_kt / 3600) * 50;  // rough pixel/frame scaling
+    return {
+      id:      f.callsign,
+      type:    f.aircraft_code || "UNK",
+      weight:  f.weight_class  || "Unknown",
+      size:    f.weight_class === "Heavy" ? 1.3 : f.weight_class === "Light" ? 0.6 : 1.0,
+      x:       pos.x,
+      y:       pos.y,
+      targetX: pos.x + Math.sin(headingRad) * 200,
+      targetY: pos.y - Math.cos(headingRad) * 200,
+      heading: headingRad,
+      speed:   Math.max(0.5, speedPx),
+      runway:  "live",
+      phase:   f.on_ground ? "GROUND" : f.vertical_rate_fpm > 200 ? "DEPART" : "ARRIVE",
+      altitude_ft: f.altitude_ft,
+      trail:   [],
+    };
+  });
+
+  // Map backend violations → frontend format
+  violations = (data.violations || []).map(v => ({
+    rule:     v.rule,
+    flights:  v.flights,
+    severity: v.severity,
+    distance: v.evidence?.distance_nm
+      ? parseFloat(v.evidence.distance_nm).toFixed(1)
+      : "!",
+  }));
+
+  // Weather
+  const w = data.weather || {};
+  weather.wind_dir   = w.wind_dir_deg   || 270;
+  weather.wind_speed = w.wind_speed_kts || 0;
+  weather.storm      = w.storm_warning  || false;
+
+  // AI Decision panel
+  const d = data.decision || {};
+  updateAIPanel(d);
+
+  // Metrics panel
+  updateMetrics(d);
+}
+
+function updateAIPanel(decision) {
+  if (!decision || !decision.reasoning) return;
+
+  const action = decision.action;
+  if (action) {
+    ui.aiContent.innerHTML = `
+      <div class="ai-action">
+        <div class="ai-target">${action.target_flight || ""}</div>
+        <div class="ai-command">${action.type?.replace("_", " ").toUpperCase() || ""} ${action.value || ""}</div>
+        <div class="ai-reason">${decision.reasoning}</div>
+        <div class="ai-meta">
+          Confidence: ${(decision.confidence * 100).toFixed(0)}%
+          ${decision.sector ? ` · Sector ${decision.sector}` : ""}
+        </div>
+      </div>`;
+  } else {
+    ui.aiContent.innerHTML = `
+      <div class="ai-idle">
+        <div class="ai-reason">${decision.reasoning}</div>
+        <div class="ai-meta">Confidence: ${(decision.confidence * 100).toFixed(0)}%</div>
+      </div>`;
+  }
+}
+
+function updateMetrics(decision) {
+  if (!decision) return;
+  const latEl  = document.getElementById("latencyValue");
+  const confEl = document.getElementById("confidenceValue");
+  if (latEl)  latEl.textContent  = decision.latency_ms ? `${(decision.latency_ms / 1000).toFixed(1)}s` : "-";
+  if (confEl) confEl.textContent = decision.confidence != null ? `${(decision.confidence * 100).toFixed(0)}%` : "-";
+}
+
+async function startLiveApiPolling() {
+  if (liveTickInterval) clearInterval(liveTickInterval);
+
+  const runTick = async () => {
+    try {
+      const data = await fetchApiTick();
+      applyBackendData(data);
+    } catch (e) {
+      console.warn("[RunwAI] API tick failed:", e.message);
+    }
+  };
+
+  await runTick();  // immediate first tick
+  liveTickInterval = setInterval(runTick, 15000);
+}
+
+function stopLiveApiPolling() {
+  if (liveTickInterval) {
+    clearInterval(liveTickInterval);
+    liveTickInterval = null;
+  }
+}
 
 // ─── CANVAS & CONFIG ────────────────────────────────────────────────────────
 
@@ -659,49 +807,63 @@ function update() {
 
 // ─── SCENARIOS ──────────────────────────────────────────────────────────────
 
-function startLiveMode() {
+async function startLiveMode() {
   currentMode = "live";
   weather.storm = false;
-  
-  // Start spawning aircraft
-  if (spawnIntervalId) clearInterval(spawnIntervalId);
-  spawnIntervalId = setInterval(spawnAircraft, CONFIG.SPAWN_INTERVAL);
-  
-  // Spawn initial aircraft
-  for (let i = 0; i < 4; i++) {
-    setTimeout(spawnAircraft, i * 300);
+
+  if (apiAvailable === null) await checkApiAvailable();
+
+  if (apiAvailable) {
+    // Real data: poll the backend pipeline
+    stopLiveApiPolling();
+    ui.aiContent.innerHTML = '<div class="ai-idle">Fetching live data…</div>';
+    await startLiveApiPolling();
+  } else {
+    // Fallback: spawn simulated aircraft
+    if (spawnIntervalId) clearInterval(spawnIntervalId);
+    spawnIntervalId = setInterval(spawnAircraft, CONFIG.SPAWN_INTERVAL);
+    for (let i = 0; i < 4; i++) setTimeout(spawnAircraft, i * 300);
   }
 }
 
-function runScenario(key) {
-  // Stop live spawning
-  if (spawnIntervalId) {
-    clearInterval(spawnIntervalId);
-    spawnIntervalId = null;
-  }
-  
-  // Clear existing aircraft
-  aircraft = [];
+async function runScenario(key) {
+  // Stop live spawning and API polling
+  if (spawnIntervalId) { clearInterval(spawnIntervalId); spawnIntervalId = null; }
+  stopLiveApiPolling();
+
+  aircraft   = [];
   violations = [];
-  
+
   if (key === "live") {
     startLiveMode();
     return;
   }
 
   currentMode = "scenario";
+
+  if (apiAvailable === null) await checkApiAvailable();
+
+  if (apiAvailable) {
+    ui.aiContent.innerHTML = '<div class="ai-idle">Running scenario…</div>';
+    try {
+      const data = await fetchApiScenario(key);
+      applyBackendData(data);
+      updateUI();
+      return;
+    } catch (e) {
+      console.warn("[RunwAI] Scenario API failed, falling back to mock:", e.message);
+    }
+  }
+
+  // Fallback: mock scenario
   const scenario = getScenario(key);
-  
-  // Set up scenario aircraft with proper movement
   aircraft = (scenario.aircraft || []).map(ac => ({
     ...ac,
-    trail: [],
+    trail:   [],
     heading: Math.atan2(ac.targetY - ac.y, ac.targetX - ac.x),
   }));
-  
-  violations = scenario.violations || [];
-  weather.storm = scenario.weather?.storm_warning || false;
-  
+  violations     = scenario.violations || [];
+  weather.storm  = scenario.weather?.storm_warning || false;
   updateUI();
 }
 

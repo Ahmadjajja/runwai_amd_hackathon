@@ -25,3 +25,4 @@ venv/
 transcript.txt
 demo.py
 requirements.txt
+.DS_Store

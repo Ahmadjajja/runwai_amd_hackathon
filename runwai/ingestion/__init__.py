@@ -15,14 +15,18 @@ from .flightradar_client import (
     get_weight_class,
     WEIGHT_CLASS,
 )
+from .video_processor import get_latest_frame, download_youtube, ingest_youtube_stream
 
 __all__ = [
     "fetch_flights",
-    "FlightState", 
+    "FlightState",
     "CYYZ_BOUNDS",
     "fetch_weather",
     "fetch_enriched_flights",
     "build_enrichment_map",
     "get_weight_class",
     "WEIGHT_CLASS",
+    "get_latest_frame",
+    "download_youtube",
+    "ingest_youtube_stream",
 ]

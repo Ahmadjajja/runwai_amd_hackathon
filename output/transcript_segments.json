@@ -1,0 +1,2473 @@
+[
+  {
+    "segment_id": 0,
+    "start_s": 1,
+    "timestamp_fmt": "00:00:01",
+    "text": "Mike 2 left, Mike 2 point delta 8 wings 2213, just uh, turn left at the end, hold short of nine left at November 13 Okay, left turn, hold short of runway 9 left.",
+    "end_s": 22
+  },
+  {
+    "segment_id": 1,
+    "start_s": 22,
+    "timestamp_fmt": "00:00:22",
+    "text": "That's 279 tower, wind 0 6 09, rolling n right 1808 or lightest 9 left, Mike 2 take off Mike take off 180 flight 1306 land tower 9 left, Mike 2 live await traffic outfield.",
+    "end_s": 42
+  },
+  {
+    "segment_id": 2,
+    "start_s": 42,
+    "timestamp_fmt": "00:00:42",
+    "text": "Good morning, Mike 2 9 left for your flight 13 06 Atlanta tower runway a ride, line of point traffic out. What was that last call for? 5130 runway a right line of point",
+    "end_s": 82
+  },
+  {
+    "segment_id": 3,
+    "start_s": 82,
+    "timestamp_fmt": "00:01:22",
+    "text": "6 north and call the ramp on 131.37 for me. 317 cross n left. Turn left on Mike, and hold short of Juliet. November 13.",
+    "end_s": 102
+  },
+  {
+    "segment_id": 4,
+    "start_s": 102,
+    "timestamp_fmt": "00:01:42",
+    "text": "Cleared to cross runway 9 left, and uh, left turn on Mike short of Juliet. I think it was wings 223, and 2213 up direction.",
+    "end_s": 112
+  },
+  {
+    "segment_id": 5,
+    "start_s": 112,
+    "timestamp_fmt": "00:01:52",
+    "text": "Uh, air can type on Lima wings 223. Copy Canada. Delta 1808 contact take. See you later. Delta 180.",
+    "end_s": 124
+  },
+  {
+    "segment_id": 6,
+    "start_s": 124,
+    "timestamp_fmt": "00:02:04",
+    "text": "Good night. Wings 2213 just monitor ground on 75. Let them know when your gates available. Okay. We'll monitor one 75 through wings 22 later.",
+    "end_s": 147
+  },
+  {
+    "segment_id": 7,
+    "start_s": 147,
+    "timestamp_fmt": "00:02:27",
+    "text": "Frontier flight 130 lighting 9 left. Mike two cliff takeoff. Nine left, Mike. Two cliff takeoff, are there. Flight 136,",
+    "end_s": 157
+  },
+  {
+    "segment_id": 8,
+    "start_s": 157,
+    "timestamp_fmt": "00:02:37",
+    "text": "2157 land tower wind 0706 runway, niner right, land right clear to land 2157 2779 only nine left at tax for 277979 at tax 8 kilo cross 9 left.",
+    "end_s": 217
+  },
+  {
+    "segment_id": 9,
+    "start_s": 217,
+    "timestamp_fmt": "00:03:37",
+    "text": "Join Lima and ground 75. Uh, at Kilo cross 9 left. Lima 759. Good day. Start 259.",
+    "end_s": 231
+  },
+  {
+    "segment_id": 10,
+    "start_s": 231,
+    "timestamp_fmt": "00:03:51",
+    "text": "That's 259. Tower wind 0707. Going none right. 17 0 now, runway take off takeoff 9 left,",
+    "end_s": 279
+  },
+  {
+    "segment_id": 11,
+    "start_s": 279,
+    "timestamp_fmt": "00:04:39",
+    "text": "Mike 2 left 2175 hold short, runway 9 left kilo is that 2157 2157 hold short of rolling 9 left at kilo. Hold short 9 left at kilo. Delta 2157 18 lighting 9 left,",
+    "end_s": 300
+  },
+  {
+    "segment_id": 12,
+    "start_s": 300,
+    "timestamp_fmt": "00:05:00",
+    "text": "mike 2 eclipse 1271 land tower 9 left, Mike 2 left, Mike 1271 and tower, you have t one at south one. Hey, we're rolling with the airb 321 for ramp four.",
+    "end_s": 322
+  },
+  {
+    "segment_id": 13,
+    "start_s": 322,
+    "timestamp_fmt": "00:05:22",
+    "text": "All right, C 21 just uh Romeo, and hold short of runway 9 right at Romeo 7. All right, we'll hold short of nine right at Romeo 7. Tuck one. Tuck one",
+    "end_s": 337
+  },
+  {
+    "segment_id": 14,
+    "start_s": 337,
+    "timestamp_fmt": "00:05:37",
+    "text": "92 now. Running runway right to go 92 clear takeoff 8 right Delta 1271 or nav grid 9 left Mike 2 close to take off the grid close to takeoff 9 Mike 2, delta 471.",
+    "end_s": 370
+  },
+  {
+    "segment_id": 15,
+    "start_s": 370,
+    "timestamp_fmt": "00:06:10",
+    "text": "Delta 961 land 9 left Mike 2 line for weight traffic downfield. Right ner left Mike 2 line up on the way. Delta 9612 Atlanta runway 8 left here. Clear to land number two 737. All right.",
+    "end_s": 387
+  },
+  {
+    "segment_id": 16,
+    "start_s": 387,
+    "timestamp_fmt": "00:06:27",
+    "text": "Number two, clear to land. Delta 8 left, delta 47. Delta 343 at Delta cross runway right Fox ground 4 point 9 at delta cross 8 right, and uh ground fox trot delta 343,",
+    "end_s": 407
+  },
+  {
+    "segment_id": 17,
+    "start_s": 407,
+    "timestamp_fmt": "00:06:47",
+    "text": "delta 523 straight ahead at bravo 10, cross 8 right right on echo, stay with me okay straight ahead bravo 10, cross 8 right on echo stay with you, delta 523 1708 to departure 1708,",
+    "end_s": 421
+  },
+  {
+    "segment_id": 18,
+    "start_s": 421,
+    "timestamp_fmt": "00:07:01",
+    "text": "contact departure Left join lima ground 75, delta 2157. Delta 2569 at Kilo, cross 9 left. Join Lima ground 75.",
+    "end_s": 433
+  },
+  {
+    "segment_id": 19,
+    "start_s": 433,
+    "timestamp_fmt": "00:07:13",
+    "text": "Cross line 9 left. Join Lima. Delta 256 tower. 65 tower runway right line right away 665 1892 contact 965 left,",
+    "end_s": 466
+  },
+  {
+    "segment_id": 20,
+    "start_s": 466,
+    "timestamp_fmt": "00:07:46",
+    "text": "965 at tire good morning runway 8 left 96 delta 3174, hold short of runway 8 right at delta, short 8, right at delta delta 3174 delta 523, hold short at Golf, the ramp just turned you, uh,",
+    "end_s": 480
+  },
+  {
+    "segment_id": 21,
+    "start_s": 480,
+    "timestamp_fmt": "00:08:00",
+    "text": "just said they, uh they're not ready for you. Hold short golf. Delta 523. Thank you. Delta 523 mon.9.",
+    "end_s": 488
+  },
+  {
+    "segment_id": 22,
+    "start_s": 488,
+    "timestamp_fmt": "00:08:08",
+    "text": "He may move you. Okay. Mon ground delta 523. Thanks, sir. Thank you. Delta 3174. Hold short runway, right at delta.",
+    "end_s": 494
+  },
+  {
+    "segment_id": 23,
+    "start_s": 494,
+    "timestamp_fmt": "00:08:14",
+    "text": "Short a right at delta. Delta 3134 9 left. Mike 2, takeoff. Two clear for takeoff. Delta 961.",
+    "end_s": 506
+  },
+  {
+    "segment_id": 24,
+    "start_s": 506,
+    "timestamp_fmt": "00:08:26",
+    "text": "Southwest 365. Land tower 9 left, Mike 2 Left. 9 left, Mike 2 left. Southwest 365",
+    "end_s": 536
+  },
+  {
+    "segment_id": 25,
+    "start_s": 536,
+    "timestamp_fmt": "00:08:56",
+    "text": "Southwest 365 Light two. Clear for takeoff 365. United 632. Land tower on 9 left Mike 2 L. Traffic downfield.",
+    "end_s": 549
+  },
+  {
+    "segment_id": 26,
+    "start_s": 549,
+    "timestamp_fmt": "00:09:09",
+    "text": "9 left, Mike 2 L at 632. Delta 1072. Apparently, you have no gate. So straight ahead, November, hold short nine left in November 13.",
+    "end_s": 561
+  },
+  {
+    "segment_id": 27,
+    "start_s": 561,
+    "timestamp_fmt": "00:09:21",
+    "text": "Straight ahead in November. Hold short nine left in November 13. Delta 1072. Thank you. Delta 1072, hold short of November 13 on November.",
+    "end_s": 570
+  },
+  {
+    "segment_id": 28,
+    "start_s": 570,
+    "timestamp_fmt": "00:09:30",
+    "text": "Hold short of November 13 on November. Delta 1072 contact land. 7way Sierra, cross 9 left.",
+    "end_s": 589
+  },
+  {
+    "segment_id": 29,
+    "start_s": 589,
+    "timestamp_fmt": "00:09:49",
+    "text": "Join Mike. Ground 75. Traffic is over. All right, at Sierra, we're cross nine left.",
+    "end_s": 595
+  },
+  {
+    "segment_id": 30,
+    "start_s": 595,
+    "timestamp_fmt": "00:09:55",
+    "text": "Join Mike. Contact ground point about 1338. We're coming up on Bernie for 9 right, 1338 land. Good morning.",
+    "end_s": 613
+  },
+  {
+    "segment_id": 31,
+    "start_s": 613,
+    "timestamp_fmt": "00:10:13",
+    "text": "1 0 6 0 1 0 runway 9 right, 9 right3 2562 at delta, cross runway 8 right, joint fox ground 9. All right, cross 8 right,",
+    "end_s": 627
+  },
+  {
+    "segment_id": 32,
+    "start_s": 627,
+    "timestamp_fmt": "00:10:27",
+    "text": "at delta, join ground point 9 for delta 2562 delta 665, contact delta 665 1196 Atlanta tower, traffic downfield runway 8 right 58 01 hold short of rolling 9 left x kilo 1301 southwest, 365 contact land 365",
+    "end_s": 667
+  },
+  {
+    "segment_id": 33,
+    "start_s": 667,
+    "timestamp_fmt": "00:11:07",
+    "text": "965. Turn right on Bravo. Hold short runway right at Delta. 0 one tower, runway 8 left, clear to land 0 6 0 1 0 8 left, clear land",
+    "end_s": 700
+  },
+  {
+    "segment_id": 34,
+    "start_s": 700,
+    "timestamp_fmt": "00:11:40",
+    "text": "131. Canada 1196 RNA to Ronnie, runway 8 right clip takeoff to Ronnie, runway right, take off Canada 116 United 632, contact Atlanta departure here",
+    "end_s": 746
+  },
+  {
+    "segment_id": 35,
+    "start_s": 746,
+    "timestamp_fmt": "00:12:26",
+    "text": "380 ready 380 runway 9 left, Mike 2 awake. Just let them know when you're ready. Mike Delta 3. Good morning.",
+    "end_s": 767
+  },
+  {
+    "segment_id": 36,
+    "start_s": 767,
+    "timestamp_fmt": "00:12:47",
+    "text": "Delta 146 heavy, burning for 9. Delta 380, lighting 9 left. Mike 2. Clear takeoff. Clear takeoff.",
+    "end_s": 776
+  },
+  {
+    "segment_id": 37,
+    "start_s": 776,
+    "timestamp_fmt": "00:12:56",
+    "text": "9 left. Mike 2. Delta 338. Turn left on November, hold short nine left at Sierra.",
+    "end_s": 786
+  },
+  {
+    "segment_id": 38,
+    "start_s": 786,
+    "timestamp_fmt": "00:13:06",
+    "text": "Left on November, hold short nine left at Sierra. Delta 1338. Delta 146 heavy. At land tower,",
+    "end_s": 792
+  },
+  {
+    "segment_id": 39,
+    "start_s": 792,
+    "timestamp_fmt": "00:13:12",
+    "text": "wind 060 at 8, runway nar land. Delta 146 heavy 118. Lo tower. Runway left clear to land.",
+    "end_s": 805
+  },
+  {
+    "segment_id": 40,
+    "start_s": 805,
+    "timestamp_fmt": "00:13:25",
+    "text": "Wind 0 6 0 at 8. Canada 1196, kind of departure, see? 146 heavy, and plan on rolling out.",
+    "end_s": 834
+  },
+  {
+    "segment_id": 41,
+    "start_s": 834,
+    "timestamp_fmt": "00:13:54",
+    "text": "The 3040 line of tower runway right line. Right 3040. Delta 1901, right on bravo. Hold short. Runway right at delta.",
+    "end_s": 870
+  },
+  {
+    "segment_id": 42,
+    "start_s": 870,
+    "timestamp_fmt": "00:14:30",
+    "text": "Right on bravo, short of eight, right on. Delta delta 191, delta 30 40 on runway. Right take off, take off right 3040.",
+    "end_s": 882
+  },
+  {
+    "segment_id": 43,
+    "start_s": 882,
+    "timestamp_fmt": "00:14:42",
+    "text": "Delta 1338. 1338, amend that, just go November destroy. The uniform. Short uniform delta 1338.",
+    "end_s": 903
+  },
+  {
+    "segment_id": 44,
+    "start_s": 903,
+    "timestamp_fmt": "00:15:03",
+    "text": "The 380 contact land departure here. Delta 827 heavy, or v grit runway 9 left. Mike 2 cliff takeoff, Arnav to grit nine left,",
+    "end_s": 914
+  },
+  {
+    "segment_id": 45,
+    "start_s": 914,
+    "timestamp_fmt": "00:15:14",
+    "text": "Mike 2, Delta 827 heavy, Delta 1658, Land tower runway 9 left, M two line wait for weight serless traffic down line and wait, delta 1658 n left Mike two at the end 9 left in November 13 apparently the gates are not available",
+    "end_s": 943
+  },
+  {
+    "segment_id": 46,
+    "start_s": 943,
+    "timestamp_fmt": "00:15:43",
+    "text": "yet november 13, delta 146 heavy delta 1879 on the visual Right, 1879 tower, wind 060 at 1, Z runway 9 right. Clear to land, caution wake turbulence.",
+    "end_s": 956
+  },
+  {
+    "segment_id": 47,
+    "start_s": 956,
+    "timestamp_fmt": "00:15:56",
+    "text": "For the arriving, uh, heavy here. All right, land right, we use caut Delta 1879. 1338, looks like your gate is available.",
+    "end_s": 965
+  },
+  {
+    "segment_id": 48,
+    "start_s": 965,
+    "timestamp_fmt": "00:16:05",
+    "text": "So this whole short nine left at, uh, tank uniform. Hold short 9 left at uniform. Delta 1338. Delta 1180.",
+    "end_s": 979
+  },
+  {
+    "segment_id": 49,
+    "start_s": 979,
+    "timestamp_fmt": "00:16:19",
+    "text": "Exit Bravo, uh, 11 there. And then, uh, make a slight left onto Bravo. Bravo 11. Slight left onto Bravo.",
+    "end_s": 988
+  },
+  {
+    "segment_id": 50,
+    "start_s": 988,
+    "timestamp_fmt": "00:16:28",
+    "text": "Delta 11. Delta 1180. Gates occupied. Go all the way down to the departure end, and then hold short of runway 8 right.",
+    "end_s": 997
+  },
+  {
+    "segment_id": 51,
+    "start_s": 997,
+    "timestamp_fmt": "00:16:37",
+    "text": "Departure end. Hold short eight right. Delta 118. Right. Delta 146 heavy at November 13. Proceed on the runway.",
+    "end_s": 1007
+  },
+  {
+    "segment_id": 52,
+    "start_s": 1007,
+    "timestamp_fmt": "00:16:47",
+    "text": "Right turn on the runway. Exit at mike 18, then left on mike, and just hold show the ramp n there and short of the ramp on mike for 146 heavy.",
+    "end_s": 1031
+  },
+  {
+    "segment_id": 53,
+    "start_s": 1031,
+    "timestamp_fmt": "00:17:11",
+    "text": "827 heavy contact land. See you later. 1180 at the departure end cross runway 8 right pull over into the hammerhead, and then monitor ground on point niner. Let them know if you get any update.",
+    "end_s": 1057
+  },
+  {
+    "segment_id": 54,
+    "start_s": 1057,
+    "timestamp_fmt": "00:17:37",
+    "text": "Delta 1180 cross 8 right pull into the hammerhead and monitor ground. We'll let them know. Tower delta 1625 visual 8 left. Delta 1625 tower, runway 8 left clear land 0 6 0 7 8 left clear land delta 1625",
+    "end_s": 1083
+  },
+  {
+    "segment_id": 55,
+    "start_s": 1083,
+    "timestamp_fmt": "00:18:03",
+    "text": "right 61 tower wind 0 6 0 7 runway 9 right clear to land 9 right and delta 146 heavy, just monitor ground 75 And uh, do let them know if we hear anything about the gate.",
+    "end_s": 1099
+  },
+  {
+    "segment_id": 56,
+    "start_s": 1099,
+    "timestamp_fmt": "00:18:19",
+    "text": "Four mono we hear it. Thanks. 446 1879. Hold short 9 left a kilo. Hold short 9 left a kilo. Delta 1879 1650 grit 9 left.",
+    "end_s": 1108
+  },
+  {
+    "segment_id": 57,
+    "start_s": 1108,
+    "timestamp_fmt": "00:18:28",
+    "text": "Mike 2 take off tower 8 right line of void. Traffic downfield 293 right on, bravo. Hold short eight right at delta. Turn bravo. Hold short 8 right at delta.",
+    "end_s": 1133
+  },
+  {
+    "segment_id": 58,
+    "start_s": 1133,
+    "timestamp_fmt": "00:18:53",
+    "text": "Delta 2933 933. Let's do this, taxi via the Victor loop. All right, make delta 2 933",
+    "end_s": 1147
+  },
+  {
+    "segment_id": 59,
+    "start_s": 1147,
+    "timestamp_fmt": "00:19:07",
+    "text": "southwest 351 L tower runway 8 left clear land 0 6 0 at 6 join Lima ground 75 join limo ground delta 189 1072 apparently your gates available, so at November 13 cross 9 left, join Lima ground 75 at November 13 cross 9 left",
+    "end_s": 1171
+  },
+  {
+    "segment_id": 60,
+    "start_s": 1171,
+    "timestamp_fmt": "00:19:31",
+    "text": "join Lima ground 75 delta 1072 see Good take off 251 line of tower, runway right away for ramp number two. Tug zero, hold short of runway 9 right at Romeo 7.",
+    "end_s": 1195
+  },
+  {
+    "segment_id": 61,
+    "start_s": 1195,
+    "timestamp_fmt": "00:19:55",
+    "text": "Hold short nine right 7. Tug zero. Another 1658. Conte, a land depart. See you.",
+    "end_s": 1202
+  },
+  {
+    "segment_id": 62,
+    "start_s": 1202,
+    "timestamp_fmt": "00:20:02",
+    "text": "1658. We'll see you. Front air flight 4406 tower. Runway 9 left. Mike 2, line up. Line up and wait.",
+    "end_s": 1210
+  },
+  {
+    "segment_id": 63,
+    "start_s": 1210,
+    "timestamp_fmt": "00:20:10",
+    "text": "9 left. Mike 2. Frontier flight 446 36 251 runway right. Clear for takeoff. RV clear for takeoff. A right. Delta 251.",
+    "end_s": 1224
+  },
+  {
+    "segment_id": 64,
+    "start_s": 1224,
+    "timestamp_fmt": "00:20:24",
+    "text": "Delta 1814. L tower. Runway right line. Right. L 184. Delta 1625.",
+    "end_s": 1231
+  },
+  {
+    "segment_id": 65,
+    "start_s": 1231,
+    "timestamp_fmt": "00:20:31",
+    "text": "Text to the Vicrol. Victor Delta 16 left. 22. Are you up? 22. I have you long and clear now.",
+    "end_s": 1242
+  },
+  {
+    "segment_id": 66,
+    "start_s": 1242,
+    "timestamp_fmt": "00:20:42",
+    "text": "Just hold short runway 8 left. 1261. Hold the rolling nine left at taxi way here. short 9 left at tax 293 14 on a partial runway, right take off right 314 L tower runway, right line up 8 right 22 approaching cross runway 8 left,",
+    "end_s": 1279
+  },
+  {
+    "segment_id": 67,
+    "start_s": 1279,
+    "timestamp_fmt": "00:21:19",
+    "text": "join Victor ground point niner, cross 8 left victor ground 92 ner 235 counter departure. Lo tower, 4900 oversh. 4900 land tower, runway 8 left, clear to. Land wind 07.",
+    "end_s": 1305
+  },
+  {
+    "segment_id": 68,
+    "start_s": 1305,
+    "timestamp_fmt": "00:21:45",
+    "text": "351 tax. 51 has Xway S here, cross 9 left, join. Mike round 75. Mike 75, delta 1261.",
+    "end_s": 1330
+  },
+  {
+    "segment_id": 69,
+    "start_s": 1330,
+    "timestamp_fmt": "00:22:10",
+    "text": "Delta 251, delta 314 on right, take off. Clear for takeoff 8 right, delta 34. 53 line tower,",
+    "end_s": 1338
+  },
+  {
+    "segment_id": 70,
+    "start_s": 1338,
+    "timestamp_fmt": "00:22:18",
+    "text": "eight right line eight. Right left 53. 1814 coming departure. 123647. Lo tower, runway 8 left to land,",
+    "end_s": 1388
+  },
+  {
+    "segment_id": 71,
+    "start_s": 1388,
+    "timestamp_fmt": "00:23:08",
+    "text": "0 7 0 at. Niner left for land. 9 left at the air tug zero 58 at taxi A. Kilo cross 9 left, join lima ground 75.",
+    "end_s": 1404
+  },
+  {
+    "segment_id": 72,
+    "start_s": 1404,
+    "timestamp_fmt": "00:23:24",
+    "text": "A. Kilo crossing 9 left, join lima 75 at 128. Have a great morning. Good morning. The 1982 tower wind 0 7 09 rolling 9 right clear land.",
+    "end_s": 1413
+  },
+  {
+    "segment_id": 73,
+    "start_s": 1413,
+    "timestamp_fmt": "00:23:33",
+    "text": "1982 land on right. 1236 for the Victor loop. 1236. Affirmative. Check for the Victor loop. Delta 1236.",
+    "end_s": 1441
+  },
+  {
+    "segment_id": 74,
+    "start_s": 1441,
+    "timestamp_fmt": "00:24:01",
+    "text": "314 coming departure. Yep. Pressure down 34 787 partial runway right clip take off, 8 right clip take off 787 line tower runway right line 12 we're over shell.",
+    "end_s": 1467
+  },
+  {
+    "segment_id": 75,
+    "start_s": 1467,
+    "timestamp_fmt": "00:24:27",
+    "text": "12 tower runway left, land 0 7 0 8 left. 4900 gauge occupied. Exit Bravo 11. Flight left onto Bravo there.",
+    "end_s": 1494
+  },
+  {
+    "segment_id": 76,
+    "start_s": 1494,
+    "timestamp_fmt": "00:24:54",
+    "text": "Bravo 11. 33 counting departure. Good day left. 4900. Hold short of runway 8 right at the departure end. short 4900",
+    "end_s": 1531
+  },
+  {
+    "segment_id": 77,
+    "start_s": 1531,
+    "timestamp_fmt": "00:25:31",
+    "text": "71 on a partial runway right take off. Rush 8 right 0 for takeoff delta 271 24. 97 line tower right, line run eight right. front 24975",
+    "end_s": 1550
+  },
+  {
+    "segment_id": 78,
+    "start_s": 1550,
+    "timestamp_fmt": "00:25:50",
+    "text": "tower, lightest nine left Mike 2. Light nine left Mike 2, clear for takeoff. Delta 852. Turn left on November, holder 9.",
+    "end_s": 1565
+  },
+  {
+    "segment_id": 79,
+    "start_s": 1565,
+    "timestamp_fmt": "00:26:05",
+    "text": "Left November. Hold short 9 left here. Also 1982. Delta 3104. Tower 9 left.",
+    "end_s": 1570
+  },
+  {
+    "segment_id": 80,
+    "start_s": 1570,
+    "timestamp_fmt": "00:26:10",
+    "text": "Mike 2. Lap. Mike 2, line up the way. Delta 3104. 3183. Line tower runway right line.",
+    "end_s": 1582
+  },
+  {
+    "segment_id": 81,
+    "start_s": 1582,
+    "timestamp_fmt": "00:26:22",
+    "text": "8 93. Lo tower runway 8 left to land 0 7 0 7. 93. Lo tower runway 8 left, clear to land.",
+    "end_s": 1593
+  },
+  {
+    "segment_id": 82,
+    "start_s": 1593,
+    "timestamp_fmt": "00:26:33",
+    "text": "07 0 at 7. I confirm that for delta 8 93. Delta 8 93 affirm, left clear to land. Wind 0 6 0 at 7.",
+    "end_s": 1602
+  },
+  {
+    "segment_id": 83,
+    "start_s": 1602,
+    "timestamp_fmt": "00:26:42",
+    "text": "Clear land. Delta 1395 land tower. Good morning 1 0 6 0 7 runway niner right clear to land. Delta 127. Delta 2071. Conor departure.",
+    "end_s": 1623
+  },
+  {
+    "segment_id": 84,
+    "start_s": 1623,
+    "timestamp_fmt": "00:27:03",
+    "text": "Delta 71. Delta 3183. Rial runway 8 right. Clear for takeoff. After show clear takeoff 8 right 3183.",
+    "end_s": 1632
+  },
+  {
+    "segment_id": 85,
+    "start_s": 1632,
+    "timestamp_fmt": "00:27:12",
+    "text": "Frontier 28 98. Line tower runway 8 right line 48. Frontier 2898. Line tower runway 8 right 8. 122 tax via the Victor loop.",
+    "end_s": 1655
+  },
+  {
+    "segment_id": 86,
+    "start_s": 1655,
+    "timestamp_fmt": "00:27:35",
+    "text": "Victor loop 12. Frontier 28 98 L tower. Runway 8 right. Line. Runway 8 right, line up for weight.",
+    "end_s": 1663
+  },
+  {
+    "segment_id": 87,
+    "start_s": 1663,
+    "timestamp_fmt": "00:27:43",
+    "text": "Frontier flight 28 98. Frontier 2898. Arnavi now. Runway 8 right, clear for takeoff. Avani runway 8 right,",
+    "end_s": 1671
+  },
+  {
+    "segment_id": 88,
+    "start_s": 1671,
+    "timestamp_fmt": "00:27:51",
+    "text": "clear for takeoff. Frontier flight 2898. Frontier 2497 departure. We'll see it departure 2497. Delta 31 04 coming left,",
+    "end_s": 1688
+  },
+  {
+    "segment_id": 89,
+    "start_s": 1688,
+    "timestamp_fmt": "00:28:08",
+    "text": "Mike 2. Take off22 inbound runway. Delta 122 land tower runway 8 left. Clear to land 0 6 0 at 8.",
+    "end_s": 1705
+  },
+  {
+    "segment_id": 90,
+    "start_s": 1705,
+    "timestamp_fmt": "00:28:25",
+    "text": "Clear 3183 departure. 48 line tower runway right line traffic downfield. We're going to need about one more minute. Delta 1248.",
+    "end_s": 1746
+  },
+  {
+    "segment_id": 91,
+    "start_s": 1746,
+    "timestamp_fmt": "00:29:06",
+    "text": "Delta 1248. Hold short runway right. Hold short runway 8 right. Delta 1248. 122. Hold short runway right at Delta.",
+    "end_s": 1764
+  },
+  {
+    "segment_id": 92,
+    "start_s": 1764,
+    "timestamp_fmt": "00:29:24",
+    "text": "Short 8 right at Delta. Delta 122. Delta 893. Taxi via the Victor loop as you're able. Victor loop.",
+    "end_s": 1772
+  },
+  {
+    "segment_id": 93,
+    "start_s": 1772,
+    "timestamp_fmt": "00:29:32",
+    "text": "Delta 8. Number 4900 at the departure end. Cross runway 8 right. Pull over into the hammerhead and monitor ground on point niner. Let them know if you hear anything about your gate.",
+    "end_s": 1783
+  },
+  {
+    "segment_id": 94,
+    "start_s": 1783,
+    "timestamp_fmt": "00:29:43",
+    "text": "Roger. Eight right. We're clear to cross into the hammerhead, monarch ground point, N49. Good morning with you. 8 left 58 7 Atlanta tower,",
+    "end_s": 1795
+  },
+  {
+    "segment_id": 95,
+    "start_s": 1795,
+    "timestamp_fmt": "00:29:55",
+    "text": "runway 8 left. Clear to land 0 6 0 8 left 9 Atlanta, all set together at Mike 2. Got 1869. I don't have the grid, only nine left from intersection.",
+    "end_s": 1810
+  },
+  {
+    "segment_id": 96,
+    "start_s": 1810,
+    "timestamp_fmt": "00:30:10",
+    "text": "Mike 2, take off. 1569. All right, Delta 1247, take your time, please. There at Delta,",
+    "end_s": 1831
+  },
+  {
+    "segment_id": 97,
+    "start_s": 1831,
+    "timestamp_fmt": "00:30:31",
+    "text": "you can cross 8 right, you're going to give way to the Airbus 321 off your left. Give way to that Airbus, and then a left turn on to Echo all the way down to the Hammerhead.",
+    "end_s": 1841
+  },
+  {
+    "segment_id": 98,
+    "start_s": 1841,
+    "timestamp_fmt": "00:30:41",
+    "text": "Gates occupied. All right, clear to cross eight right edge, delta. We'll pass behind the Airbus passing in front of us, and then uh left on equator, hammerhead delta 1247.",
+    "end_s": 1853
+  },
+  {
+    "segment_id": 99,
+    "start_s": 1853,
+    "timestamp_fmt": "00:30:53",
+    "text": "1247. You got it. And uh you can monitor ground on point niner. We'll see you. Right, ground up point niner. So on delta 1247",
+    "end_s": 1862
+  },
+  {
+    "segment_id": 100,
+    "start_s": 1862,
+    "timestamp_fmt": "00:31:02",
+    "text": "and delta 1212 at delta crossing 8 right join Fox Trot, ground point niner. All right, Delta cross 8 right joint fox truck run point 122 today. Delta 893 is Victor loop for you today.",
+    "end_s": 1875
+  },
+  {
+    "segment_id": 101,
+    "start_s": 1875,
+    "timestamp_fmt": "00:31:15",
+    "text": "See it. See it delta 83. Southwest 1212 taxi via the Victor loop. Taxi Victor loop southwest 1222. 122. You got it.",
+    "end_s": 1886
+  },
+  {
+    "segment_id": 102,
+    "start_s": 1886,
+    "timestamp_fmt": "00:31:26",
+    "text": "United 163. Sh 8 left. United 1663 at tower runway 8 left. Clear to land. Wind 0 7 0 at 8 left.",
+    "end_s": 1897
+  },
+  {
+    "segment_id": 103,
+    "start_s": 1897,
+    "timestamp_fmt": "00:31:37",
+    "text": "Delta 1248. You ready now? Ready. 1248 runway 8 right line up. Runway 8 right line up. Delta 1248 41 turn left on November,",
+    "end_s": 1910
+  },
+  {
+    "segment_id": 104,
+    "start_s": 1910,
+    "timestamp_fmt": "00:31:50",
+    "text": "and taxi via November to whiskey ground 75, when you join whiskey and then ground, when we're on whiskey delta 1441. Delta 1488 R left Mike Z, take off the G clear",
+    "end_s": 1929
+  },
+  {
+    "segment_id": 105,
+    "start_s": 1929,
+    "timestamp_fmt": "00:32:09",
+    "text": "for takeoff runway 9 left delta 1488 tower runway right line eight right line delta 774 Visual 1158 L tower, runway 8 left, clear. To land 0 7 0,",
+    "end_s": 1974
+  },
+  {
+    "segment_id": 106,
+    "start_s": 1974,
+    "timestamp_fmt": "00:32:54",
+    "text": "niner 8, clear delta left. 774 on a partial runway 8 right clip. Takeoff right clip, takeoff partial delta. 774 1823 land tower, runway 8 right.",
+    "end_s": 1988
+  },
+  {
+    "segment_id": 107,
+    "start_s": 1988,
+    "timestamp_fmt": "00:33:08",
+    "text": "Delta 1823 line 5870, right turn on to. Bravo, taxi bravo to Victor ground point. Niner on victor bravo to victor ground. Point niner.",
+    "end_s": 2016
+  },
+  {
+    "segment_id": 108,
+    "start_s": 2016,
+    "timestamp_fmt": "00:33:36",
+    "text": "You all set to go there? 1944 RV to grit, runway 9 left. Intersection Mike 2, take off. Uh, Mike 2 intersection 9 left 36.",
+    "end_s": 2029
+  },
+  {
+    "segment_id": 109,
+    "start_s": 2029,
+    "timestamp_fmt": "00:33:49",
+    "text": "Delta. 1488 contact. Delta 1488. Runway right, clip takeoff right 183. 77 tower, runway right line.",
+    "end_s": 2046
+  },
+  {
+    "segment_id": 110,
+    "start_s": 2046,
+    "timestamp_fmt": "00:34:06",
+    "text": "Right line up, delta triple 763. Right turn on bravo, taxi bravo to Victor. Ground point ner on Victor, Bravo to. Victor ground on Victor,",
+    "end_s": 2056
+  },
+  {
+    "segment_id": 111,
+    "start_s": 2056,
+    "timestamp_fmt": "00:34:16",
+    "text": "get 1663 949. Land tower, runway Eight left. Clear to land. Wind 0 6 0 at 6. Cle land 8 left. Jazz 949. Jazz 949.",
+    "end_s": 2066
+  },
+  {
+    "segment_id": 112,
+    "start_s": 2066,
+    "timestamp_fmt": "00:34:26",
+    "text": "You are 2.5 miles on trail. Got a 40 knot overtake. 1158. No need to respond, just no delay getting off the runway for me,",
+    "end_s": 2075
+  },
+  {
+    "segment_id": 113,
+    "start_s": 2075,
+    "timestamp_fmt": "00:34:35",
+    "text": "please. Traffic in tight behind you. That was for Delta 1158. No need to respond now. Delta 774. We're connect 777 on a partial runway,",
+    "end_s": 2091
+  },
+  {
+    "segment_id": 114,
+    "start_s": 2091,
+    "timestamp_fmt": "00:34:51",
+    "text": "right take off 2886 line tower runway, right line tower 16 34 visual, 8 left 1634 line tower runway, 8 left clear land 0 6 0",
+    "end_s": 2124
+  },
+  {
+    "segment_id": 115,
+    "start_s": 2124,
+    "timestamp_fmt": "00:35:24",
+    "text": "five left clear 16 1823 kind of departure, see 43 high speed, and then tax the Victor loop. All right, we're outside Bravo 7.",
+    "end_s": 2152
+  },
+  {
+    "segment_id": 116,
+    "start_s": 2152,
+    "timestamp_fmt": "00:35:52",
+    "text": "We'll be attacking Victor Loop. Bravo, sorry, Delta 1168. Thank you. Great job. Delta 1 heavy Atlanta. Yes. Yeah.",
+    "end_s": 2166
+  },
+  {
+    "segment_id": 117,
+    "start_s": 2166,
+    "timestamp_fmt": "00:36:06",
+    "text": "Can we get full length? Yes, you can. Delta one heavy. Go full length there, and uh, you should be released as you get down there,",
+    "end_s": 2172
+  },
+  {
+    "segment_id": 118,
+    "start_s": 2172,
+    "timestamp_fmt": "00:36:12",
+    "text": "but might be just a minute of a plan. Full length. Okay, we'll take our time. Delta 1894, contact departure. 94 departure today.",
+    "end_s": 2181
+  },
+  {
+    "segment_id": 119,
+    "start_s": 2181,
+    "timestamp_fmt": "00:36:21",
+    "text": "Delta 1 N. Yeah, you're still going to go to Mike 2. You'll be next to go if you're ready. Are you ready at Mike two there?",
+    "end_s": 2187
+  },
+  {
+    "segment_id": 120,
+    "start_s": 2187,
+    "timestamp_fmt": "00:36:27",
+    "text": "Yep, we're ready. 190 intersection Mike 2 there. Go to 190 line of weight and wait 2. American 1567, back over to ground on point niner,",
+    "end_s": 2202
+  },
+  {
+    "segment_id": 121,
+    "start_s": 2202,
+    "timestamp_fmt": "00:36:42",
+    "text": "please. For American 1567, just hold your position for American Please. Delta trip 7, coming departure more. Delta triple 7. Jazz 9 49, make the right on Bravo,",
+    "end_s": 2218
+  },
+  {
+    "segment_id": 122,
+    "start_s": 2218,
+    "timestamp_fmt": "00:36:58",
+    "text": "and then hold short runway 8 right at Delta. Then hold short runway 8 right at Delta. Right on Bravo, short eight right at Delta 9. Delta 9.",
+    "end_s": 2236
+  },
+  {
+    "segment_id": 123,
+    "start_s": 2236,
+    "timestamp_fmt": "00:37:16",
+    "text": "Right 190, 190 on the grid left. Intersection Mike two, clear take off. Right now that's Mike two. Clear for takeoff 190.",
+    "end_s": 2244
+  },
+  {
+    "segment_id": 124,
+    "start_s": 2244,
+    "timestamp_fmt": "00:37:24",
+    "text": "74 land caution. Wait, there will be a heavy departing the inboard arrival. Will be a heavy departing the inboard arrival. The wind 0 6 0 8 only 9 right land. Land.",
+    "end_s": 2259
+  },
+  {
+    "segment_id": 125,
+    "start_s": 2259,
+    "timestamp_fmt": "00:37:39",
+    "text": "013 42 over SH, left 32 42 L tower runway left clear land, wind 0 6 0 8, left 32 42 delta 1929 on a partial runway,",
+    "end_s": 2275
+  },
+  {
+    "segment_id": 126,
+    "start_s": 2275,
+    "timestamp_fmt": "00:37:55",
+    "text": "right clear for takeoff, clear for takeoff right delta 1929, Delta 1522 L tower, and wait right line 1522 16 34 tax Victor, loop Victor,",
+    "end_s": 2296
+  },
+  {
+    "segment_id": 127,
+    "start_s": 2296,
+    "timestamp_fmt": "00:38:16",
+    "text": "loop delta 1634 28 86 departure, departure delta 28 86 22 right clear for takeoff. 8 right clear for takeoff. 1063, coming departure departure 15 burning 15 be heavy air,",
+    "end_s": 2343
+  },
+  {
+    "segment_id": 128,
+    "start_s": 2343,
+    "timestamp_fmt": "00:39:03",
+    "text": "50 depart the inboard runway 08 right for land, 9 right copy 190 contact departure, see you later 190 949 at Delta cross runway 8 right short of ramp 6 north, you can call the ramp 131.37 to RJ off your left,",
+    "end_s": 2373
+  },
+  {
+    "segment_id": 129,
+    "start_s": 2373,
+    "timestamp_fmt": "00:39:33",
+    "text": "given way to you 3137 for the ramp, and RJ gives way to 949 the 1929 kind of departure, see it departure delta 1929, delta 2141 tax victor loop victory loop delta 2141 delta 1157, L tower runway 8 left,",
+    "end_s": 2392
+  },
+  {
+    "segment_id": 130,
+    "start_s": 2392,
+    "timestamp_fmt": "00:39:52",
+    "text": "cr 0. Ner 0 at niner left for land. And tug 11, just an update, I got about three more on final, and then I'll have a gap for you, I'll get you moving shortly.",
+    "end_s": 2403
+  },
+  {
+    "segment_id": 131,
+    "start_s": 2403,
+    "timestamp_fmt": "00:40:03",
+    "text": "1127 for that heavy airbo 350 runway 9 left at the full length. All right. Uh, 1082, you're still going to go to Mike 2 there. Yeah, we're doing Mike.",
+    "end_s": 2444
+  },
+  {
+    "segment_id": 132,
+    "start_s": 2444,
+    "timestamp_fmt": "00:40:44",
+    "text": "Delta 1912, runway 8 right, and wait and Traffic will be downfield. Wait, eight right. Delta 1912 CUG 11. Traffic's in position.",
+    "end_s": 2460
+  },
+  {
+    "segment_id": 133,
+    "start_s": 2460,
+    "timestamp_fmt": "00:41:00",
+    "text": "Charlie, cross runway 8 right. Hold short runway 8 left. Thank you. Go full length. 1775. Lining up 1775. 1775. Go full length 1775.",
+    "end_s": 2479
+  },
+  {
+    "segment_id": 134,
+    "start_s": 2479,
+    "timestamp_fmt": "00:41:19",
+    "text": "Thank you. Have a 1985. Go ahead. You're still going to go to Mike 2. You're going to be next to go at Mike 2. They done 1985 just for some in spacing.",
+    "end_s": 2490
+  },
+  {
+    "segment_id": 135,
+    "start_s": 2490,
+    "timestamp_fmt": "00:41:30",
+    "text": "So, find Mike here. I'll call you back in a sec. All right. We'll expect that9 035 heavyweight runway 8 n right 035 heavy plan to roll all the way to the end,",
+    "end_s": 2516
+  },
+  {
+    "segment_id": 136,
+    "start_s": 2516,
+    "timestamp_fmt": "00:41:56",
+    "text": "please. Really tight spacing, uh, with them. Copy all clear. The grip only left clear off",
+    "end_s": 2545
+  },
+  {
+    "segment_id": 137,
+    "start_s": 2545,
+    "timestamp_fmt": "00:42:25",
+    "text": "1985. 29 left, and Mike two on it way. Great job. Taxi via the Victor loop as you're able. Victor loop 11. Nice.",
+    "end_s": 2567
+  },
+  {
+    "segment_id": 138,
+    "start_s": 2567,
+    "timestamp_fmt": "00:42:47",
+    "text": "Runway right take off. Clear takeoff. A right, Arnav Hersel 1912 1146 tower. Runway right up. Hey, right at 11 46",
+    "end_s": 2594
+  },
+  {
+    "segment_id": 139,
+    "start_s": 2594,
+    "timestamp_fmt": "00:43:14",
+    "text": "ground 96. We got on ground 11 room on final, Charlie cross 8 left alpha to the ramp with me, Charlie cross 8 left,",
+    "end_s": 2609
+  },
+  {
+    "segment_id": 140,
+    "start_s": 2609,
+    "timestamp_fmt": "00:43:29",
+    "text": "alpha to the ramp with you 1146. Ronnie runway 8 right, take off takeoff 8 right now, after delta 1146. American 1567 tower runway right 8 right,",
+    "end_s": 2621
+  },
+  {
+    "segment_id": 141,
+    "start_s": 2621,
+    "timestamp_fmt": "00:43:41",
+    "text": "American 1567 364 tax to the victor loop, loop 364 Good. The lightest turn left at the full length, take off. Golf 1080.",
+    "end_s": 2659
+  },
+  {
+    "segment_id": 142,
+    "start_s": 2659,
+    "timestamp_fmt": "00:44:19",
+    "text": "Delta 1775 at the full length. There. Runway 9 left one at white. 9 left full length. Delta 1775 right. Clear for takeoff.",
+    "end_s": 2670
+  },
+  {
+    "segment_id": 143,
+    "start_s": 2670,
+    "timestamp_fmt": "00:44:30",
+    "text": "Delta 21 47 line tower. Runway right line up. Line up and wait 8 right. Delta 2147 23. Thanks for asking,",
+    "end_s": 2680
+  },
+  {
+    "segment_id": 144,
+    "start_s": 2680,
+    "timestamp_fmt": "00:44:40",
+    "text": "but hold up Mike 2. You'll be number one at Mike 2 here. Two more airplanes. 035 heavy flight right on November. Hold Short of runway 9 left,",
+    "end_s": 2689
+  },
+  {
+    "segment_id": 145,
+    "start_s": 2689,
+    "timestamp_fmt": "00:44:49",
+    "text": "attack November 13th. November 9 left two on November 13, send air 35. 2147 on right takeoff, our nav runway for takeoff right delta 2147",
+    "end_s": 2714
+  },
+  {
+    "segment_id": 146,
+    "start_s": 2714,
+    "timestamp_fmt": "00:45:14",
+    "text": "115 line of tower right line of wait right line wait delta 115, 1146 kind of departure delta 1146 depart delta 2365 left 2365 line of tower runway 8 left clear to land 0 6 0 to",
+    "end_s": 2732
+  },
+  {
+    "segment_id": 147,
+    "start_s": 2732,
+    "timestamp_fmt": "00:45:32",
+    "text": "8 left clear to land delta 2365 2345 Delta 115 on a partial runway right clip takeoff take off eight, right? Delta left 1992. Tower runway right, line eight right. Delta 1992, American 1567,",
+    "end_s": 2768
+  },
+  {
+    "segment_id": 148,
+    "start_s": 2768,
+    "timestamp_fmt": "00:46:08",
+    "text": "call departure. 2 departure Mark 6745. We're now left. 1997 Mike 2 flight runway 9 left at Mike 2. Delta 1997 1775 Contact",
+    "end_s": 2834
+  },
+  {
+    "segment_id": 149,
+    "start_s": 2834,
+    "timestamp_fmt": "00:47:14",
+    "text": "1992 runway 8, right, cleared for takeoff. 8 right for takeoff, 1992, 4160 line of tower 8 right, line for wait.",
+    "end_s": 2846
+  },
+  {
+    "segment_id": 150,
+    "start_s": 2846,
+    "timestamp_fmt": "00:47:26",
+    "text": "A break. 41. 035 heavy at November 13. Cross run from 9 left. Taxi straight into ramp nine.",
+    "end_s": 2864
+  },
+  {
+    "segment_id": 151,
+    "start_s": 2864,
+    "timestamp_fmt": "00:47:44",
+    "text": "All the way into the ramp. Have a good morning. Ner left. November 13, straight in ramp ner. The traffic will hold 15 departure. Where you left",
+    "end_s": 2905
+  },
+  {
+    "segment_id": 152,
+    "start_s": 2905,
+    "timestamp_fmt": "00:48:25",
+    "text": "365, turn right on Bravo. Hold short runway 8 right at Delta. It'll be just a moment there. Right turn. Bravo, hold short of eight right at Delta. 43 6 460 on a partial runway,",
+    "end_s": 2918
+  },
+  {
+    "segment_id": 153,
+    "start_s": 2918,
+    "timestamp_fmt": "00:48:38",
+    "text": "right take off right here 4473. L tower runway right Here 4473, Delta 1992 coming to departure, Delta 1992. Delt 1997 Ris 9 left Mike 2,",
+    "end_s": 2937
+  },
+  {
+    "segment_id": 154,
+    "start_s": 2937,
+    "timestamp_fmt": "00:48:57",
+    "text": "clear take off 586 still on the tower right now, left Mike 2, left Mike 56 frontier 4473 on brown air right, take off 170 five line tower right, avoid.",
+    "end_s": 2996
+  },
+  {
+    "segment_id": 155,
+    "start_s": 2996,
+    "timestamp_fmt": "00:49:56",
+    "text": "586 left two full 1384 land tower right, line right 138460 departure, stay up for CF 97, contact departure, see you departure 97, good day.",
+    "end_s": 3034
+  },
+  {
+    "segment_id": 156,
+    "start_s": 3034,
+    "timestamp_fmt": "00:50:34",
+    "text": "2755 R9. Clear, take off. Take off, never del 1384 29 08 L tower runway right. Runway 8 right, Delta 293. Contact departure, Delta.",
+    "end_s": 3082
+  },
+  {
+    "segment_id": 157,
+    "start_s": 3082,
+    "timestamp_fmt": "00:51:22",
+    "text": "324. For ner. Left Mike 2, clear take off. Clear for takeoff. Runway niner left. Mike 2.",
+    "end_s": 3092
+  },
+  {
+    "segment_id": 158,
+    "start_s": 3092,
+    "timestamp_fmt": "00:51:32",
+    "text": "Delta 3224. Delta 1796 to 9 left. Two. Line of flight two. Delta 1796. Delta 5 86.",
+    "end_s": 3103
+  },
+  {
+    "segment_id": 159,
+    "start_s": 3103,
+    "timestamp_fmt": "00:51:43",
+    "text": "Contact departure. See you. 1705. See you tonight. 29 08 on first runway. Right click. Take off on clear.",
+    "end_s": 3114
+  },
+  {
+    "segment_id": 160,
+    "start_s": 3114,
+    "timestamp_fmt": "00:51:54",
+    "text": "Take off. 108 right to 29 right 41 line of tower 8 right line eight will be downfield 8 right line 41 back to part",
+    "end_s": 3159
+  },
+  {
+    "segment_id": 161,
+    "start_s": 3159,
+    "timestamp_fmt": "00:52:39",
+    "text": "eight. Right. Hold short eight left. Charlie will cross eight right hold short eight left alpha one plus one Romeo 11, tug eight what?",
+    "end_s": 3172
+  },
+  {
+    "segment_id": 162,
+    "start_s": 3172,
+    "timestamp_fmt": "00:52:52",
+    "text": "What ramp? Eventually ramp five waiter and short of ramp six, north will contact off your left side, gives way to you 1384 kind of departure, see it, see no 1384, one Charlie crossing eight left alpha to the ramp with me.",
+    "end_s": 3192
+  },
+  {
+    "segment_id": 163,
+    "start_s": 3192,
+    "timestamp_fmt": "00:53:12",
+    "text": "Charlie will cross eight left, alpha to the ramp off one. November delta 3224, contact delta 32 24 delta 168 burning 16. Good morning.",
+    "end_s": 3211
+  },
+  {
+    "segment_id": 164,
+    "start_s": 3211,
+    "timestamp_fmt": "00:53:31",
+    "text": "I guess, it is the wind 0 7 08 9 right clear land. Middle on right, and tug eight. Uh, on November, hold short of taxi.",
+    "end_s": 3219
+  },
+  {
+    "segment_id": 165,
+    "start_s": 3219,
+    "timestamp_fmt": "00:53:39",
+    "text": "Sierra short of Sierra Tug. Do me a favor. Once you're on November, call the ramp tower Just make sure they're ready for you, and come back to me, please.",
+    "end_s": 3229
+  },
+  {
+    "segment_id": 166,
+    "start_s": 3229,
+    "timestamp_fmt": "00:53:49",
+    "text": "We'll do it Delta 3197 on airway right, take off 197 3615 line of tower right, line right on boy 36 left Mike 2 take the 3220 on the way now,",
+    "end_s": 3272
+  },
+  {
+    "segment_id": 167,
+    "start_s": 3272,
+    "timestamp_fmt": "00:54:32",
+    "text": "left two line two line of 3220 79 departure. Morning. On boy 3615 on the Hersel runway 8 right. Takeoff 8 right on the Helway 36 delta. 531 tower runway 8 right line 48.",
+    "end_s": 3303
+  },
+  {
+    "segment_id": 168,
+    "start_s": 3303,
+    "timestamp_fmt": "00:55:03",
+    "text": "Right delta 531, 41 kind of departure. Stay. Back here in two airplanes. Actually, I changed my mind just moving.",
+    "end_s": 3322
+  },
+  {
+    "segment_id": 169,
+    "start_s": 3322,
+    "timestamp_fmt": "00:55:22",
+    "text": "There. You can cross nine left at. Sierra. Go straight in ramp five and. Call the ramp to the hold. To the ramp. Delta 3197 kind of departure sight.",
+    "end_s": 3355
+  },
+  {
+    "segment_id": 170,
+    "start_s": 3355,
+    "timestamp_fmt": "00:55:55",
+    "text": "On 3197. Left Mike 2, clear takeoff, delta 32 37. Heavy 9, left Mike. Left Mike 2, delta 837 heavy,",
+    "end_s": 3368
+  },
+  {
+    "segment_id": 171,
+    "start_s": 3368,
+    "timestamp_fmt": "00:56:08",
+    "text": "delta 600. Contact departure, delta 600 16, turn left. On November, you going five today, yes sir. Left on November, delta 68, delta 168 left. On November, hold short runway 9 left at.",
+    "end_s": 3378
+  },
+  {
+    "segment_id": 172,
+    "start_s": 3378,
+    "timestamp_fmt": "00:56:18",
+    "text": "Sierra left on November, short of nine. Left at Sierra, delta 1680 right. Now clear take off right, and 5148 going.",
+    "end_s": 3389
+  },
+  {
+    "segment_id": 173,
+    "start_s": 3389,
+    "timestamp_fmt": "00:56:29",
+    "text": "To be just a moment, waiting for a heavy. Departure off center complex. On boy 3615, departure 365. Can you see.",
+    "end_s": 3421
+  },
+  {
+    "segment_id": 174,
+    "start_s": 3421,
+    "timestamp_fmt": "00:57:01",
+    "text": "37 heavy grip 29 left take off? 92 for that heavy level 30 departing traffic will cross runway 9 left intersection two on a play 3220 20 contact departure. Have a good one.",
+    "end_s": 3458
+  },
+  {
+    "segment_id": 175,
+    "start_s": 3458,
+    "timestamp_fmt": "00:57:38",
+    "text": "Departure. Thanks. Del 220 31 coming up 531 city 148 line tower runway right line up. Going to be a moment in position. Waiting for that heavy depart center complex. Right.",
+    "end_s": 3486
+  },
+  {
+    "segment_id": 176,
+    "start_s": 3486,
+    "timestamp_fmt": "00:58:06",
+    "text": "Delta 1618. We're on the visual 95. Hello. The wind 0 0 1 0 runway 9 right clear land, right clear land. Heavy contact land.",
+    "end_s": 3543
+  },
+  {
+    "segment_id": 177,
+    "start_s": 3543,
+    "timestamp_fmt": "00:59:03",
+    "text": "982 9 left intersection, Mike 2, take off. 228 on the tower, 9 left intersection. Mike 2 left. Line up.",
+    "end_s": 3608
+  },
+  {
+    "segment_id": 178,
+    "start_s": 3608,
+    "timestamp_fmt": "01:00:08",
+    "text": "228 grit, 9 left, Mike 2, clear take off. Delta 28, delta 1642, line of tower over 9. Left intersection, Mike 2,",
+    "end_s": 3620
+  },
+  {
+    "segment_id": 179,
+    "start_s": 3620,
+    "timestamp_fmt": "01:00:20",
+    "text": "line of flight. Left, Mike 2, line up, wait for delta 1642. Del 28 83 68 Earth 982 contact 98283",
+    "end_s": 3651
+  },
+  {
+    "segment_id": 180,
+    "start_s": 3651,
+    "timestamp_fmt": "01:00:51",
+    "text": "on that runway 83 17 82 Atlanta, runway 8 right point 1782 1642 R9 left the mic, two for a second off 1642 Delta 1882, now left intersection Mike 2 line of play,",
+    "end_s": 3686
+  },
+  {
+    "segment_id": 181,
+    "start_s": 3686,
+    "timestamp_fmt": "01:01:26",
+    "text": "left Mike 2 line up wait Delta 1882 1975 Atlanta runway 8 left clear land clear to land 51 482 runway 8 take off 8 okay for takeoff 1782 1620 runway right 1620 48 contact 51 48 contact the grits 29 left, Mike,",
+    "end_s": 3751
+  },
+  {
+    "segment_id": 182,
+    "start_s": 3751,
+    "timestamp_fmt": "01:02:31",
+    "text": "2 take off. 82 32 39 tower 9 left intersection, Mike. 2 line of white left intersection of mike, 2 line of white, delta 32 39, excuse me air 61 52 line tower wind 070 at",
+    "end_s": 3766
+  },
+  {
+    "segment_id": 183,
+    "start_s": 3766,
+    "timestamp_fmt": "01:02:46",
+    "text": "oneway n right, clear. 61242 contact departure, departure 1642. Yeah. Runway right, take off.",
+    "end_s": 3783
+  },
+  {
+    "segment_id": 184,
+    "start_s": 3783,
+    "timestamp_fmt": "01:03:03",
+    "text": "All right. Virtually right, clear take off 1620 6 Atlanta tower. Runway 8 right away. Delta 220 6 3429.",
+    "end_s": 3793
+  },
+  {
+    "segment_id": 185,
+    "start_s": 3793,
+    "timestamp_fmt": "01:03:13",
+    "text": "Atlanta tower. Runway 8 left. Clear to land. Clear to land eight left. Break 3429.",
+    "end_s": 3807
+  },
+  {
+    "segment_id": 186,
+    "start_s": 3807,
+    "timestamp_fmt": "01:03:27",
+    "text": "Delta 1782, contact departure. No delay to 250 knots for me. Delta 2206, now running right, take off after running clear for takeoff, right delta 2206,",
+    "end_s": 3824
+  },
+  {
+    "segment_id": 187,
+    "start_s": 3824,
+    "timestamp_fmt": "01:03:44",
+    "text": "delta 1830 to cover runway right line of point, right line of weight delta 1830 to gr left intersection Mike 2, clear take off to grin left Mike 2 intersection clear for takeoff, delta 3239, delta 1587, now left intersection Mike 2 line of flight,",
+    "end_s": 3843
+  },
+  {
+    "segment_id": 188,
+    "start_s": 3843,
+    "timestamp_fmt": "01:04:03",
+    "text": "left Mike 2 line 1587 Two, contact departure. 17. Hey, right now, clear for takeoff.",
+    "end_s": 3867
+  },
+  {
+    "segment_id": 189,
+    "start_s": 3867,
+    "timestamp_fmt": "01:04:27",
+    "text": "1743, Atlanta tower, runway right. 1743. United 1975, taxi bravo to Victor. Contact ground point 9, once you get to the wall on Victor Bravo to Victor.",
+    "end_s": 3878
+  },
+  {
+    "segment_id": 190,
+    "start_s": 3878,
+    "timestamp_fmt": "01:04:38",
+    "text": "Ground point 9, and we'll contact ground once you get to the wall, 1975 1620 contact 16207 on aggress. Now left, mike 2,",
+    "end_s": 3896
+  },
+  {
+    "segment_id": 191,
+    "start_s": 3896,
+    "timestamp_fmt": "01:04:56",
+    "text": "take off. 2633 now left intersection, Mike 28 left Mike 2, line up for weight, delta 2633 shuttle 6152, turn left onto November taxi November whiskey,",
+    "end_s": 3913
+  },
+  {
+    "segment_id": 192,
+    "start_s": 3913,
+    "timestamp_fmt": "01:05:13",
+    "text": "once you're on whiskey, call ground 1.75 left on November, November whiskey, and on whiskey, call to 175 613. Delta 3239, contact departure.",
+    "end_s": 3929
+  },
+  {
+    "segment_id": 193,
+    "start_s": 3929,
+    "timestamp_fmt": "01:05:29",
+    "text": "See departure. Delta 3239. Delta 26 33, right, and left intersection Mike 2, clear, take off.",
+    "end_s": 3942
+  },
+  {
+    "segment_id": 194,
+    "start_s": 3942,
+    "timestamp_fmt": "01:05:42",
+    "text": "Delta 26 33, end 5365, 11, nine, left intersection, Mike 2. 535. Runway rock, take off takeoff 8 right 874",
+    "end_s": 3958
+  },
+  {
+    "segment_id": 195,
+    "start_s": 3958,
+    "timestamp_fmt": "01:05:58",
+    "text": "flight 3852 Atlanta runway rightway runway 8 right, 352 3429, taxi bravo to Victor, contact ground 0.9, once you get to the wall on tax victor, Victor and contact uh ground point 9,",
+    "end_s": 3972
+  },
+  {
+    "segment_id": 196,
+    "start_s": 3972,
+    "timestamp_fmt": "01:06:12",
+    "text": "whenever we get to the wall at Victor 36 or 3429 right 46 balloon 07 011, one runway 9 clear land 157 contact departure, see you later. Runway 8 right cliff,",
+    "end_s": 4001
+  },
+  {
+    "segment_id": 197,
+    "start_s": 4001,
+    "timestamp_fmt": "01:06:41",
+    "text": "take off 38 2171 tower, runway 8 right, line up and wait 2171 1743. South Park 1743. Good day.",
+    "end_s": 4021
+  },
+  {
+    "segment_id": 198,
+    "start_s": 4021,
+    "timestamp_fmt": "01:07:01",
+    "text": "Go to 1809. Just for a heads up, uh still have about two to three minutes to burn there, so I can let you go when you get down there. No one behind you, so you'll be next to go there,",
+    "end_s": 4030
+  },
+  {
+    "segment_id": 199,
+    "start_s": 4030,
+    "timestamp_fmt": "01:07:10",
+    "text": "but just have to like I said, it's going to be a couple minutes. Runway right. All right. Hersel eight,",
+    "end_s": 4039
+  },
+  {
+    "segment_id": 200,
+    "start_s": 4039,
+    "timestamp_fmt": "01:07:19",
+    "text": "uh eight right clear for takeoff 5496 Atlanta tower runway 8 right 65 RV lettuce runway 9 left take off 26, 33 contact departure, still departure 26 33 22, 227",
+    "end_s": 4070
+  },
+  {
+    "segment_id": 201,
+    "start_s": 4070,
+    "timestamp_fmt": "01:07:50",
+    "text": "delta 874 contact delta 874 96 runway take off 483 Atlanta tower, runway right line right line 483 5, 38, 52 airport 30 left in Mike 2. Line up.",
+    "end_s": 4133
+  },
+  {
+    "segment_id": 202,
+    "start_s": 4133,
+    "timestamp_fmt": "01:08:53",
+    "text": "Light up. Delta 189. Delta 2855 at runway right away. 46. Turn left on November. Taxi November down to whiskey.",
+    "end_s": 4150
+  },
+  {
+    "segment_id": 203,
+    "start_s": 4150,
+    "timestamp_fmt": "01:09:10",
+    "text": "Once you're on whiskey, contact ground 12.75. Ground American 746 53 65 contact wings 2171 contact 2835 now runway right take 855 2470 11 tower runway right 2470 96 over 5496",
+    "end_s": 4223
+  },
+  {
+    "segment_id": 204,
+    "start_s": 4223,
+    "timestamp_fmt": "01:10:23",
+    "text": "still 247 now runway. Take off. 09 grip runway 9 left from Mike 2 intersection take off 09 1153 n left Mike 2 intersection on 1153,",
+    "end_s": 4260
+  },
+  {
+    "segment_id": 205,
+    "start_s": 4260,
+    "timestamp_fmt": "01:11:00",
+    "text": "and 9 left Mike 2 intersection line. Up and\u2026 5241 runway right. Now 441 depart. 5526 at Atlanta runway right.",
+    "end_s": 4276
+  },
+  {
+    "segment_id": 206,
+    "start_s": 4276,
+    "timestamp_fmt": "01:11:16",
+    "text": "There 5526 blue 56 33, thank you taxi. Bravo victor contact ground 0.9, once you\u2026 Get to the wall on Victor Bravo Victor. Contact ground 9 at the wall for Victor.",
+    "end_s": 4289
+  },
+  {
+    "segment_id": 207,
+    "start_s": 4289,
+    "timestamp_fmt": "01:11:29",
+    "text": "Blue 563 28 35 contact departure. Departure good Del5, and just head up. We\u2026 Just passed about five birds here at\u2026 2,800 ft in our current position.",
+    "end_s": 4297
+  },
+  {
+    "segment_id": 208,
+    "start_s": 4297,
+    "timestamp_fmt": "01:11:37",
+    "text": "All\u2026 Right. Which direction of flight? Back towards the airport, and uh they're\u2026 They're about to.",
+    "end_s": 4303
+  },
+  {
+    "segment_id": 209,
+    "start_s": 4303,
+    "timestamp_fmt": "01:11:43",
+    "text": "All right. Uh Dela\u2026 2470 use uh use caution. Copy, 247 55 26 runway takeoff takeoff. Right.",
+    "end_s": 4319
+  },
+  {
+    "segment_id": 210,
+    "start_s": 4319,
+    "timestamp_fmt": "01:11:59",
+    "text": "26, United 22 98 Atlanta tower runway 8. Right line of point 8, right line way to. United 2298, everybody use caution about.",
+    "end_s": 4328
+  },
+  {
+    "segment_id": 211,
+    "start_s": 4328,
+    "timestamp_fmt": "01:12:08",
+    "text": "Five, there 300 ft westbound. 456 exit to Bravo 11 taxi 6, please bravo. 11 victor loop 456 2470, did you get any.",
+    "end_s": 4339
+  },
+  {
+    "segment_id": 212,
+    "start_s": 4339,
+    "timestamp_fmt": "01:12:19",
+    "text": "Birds inside, birds about 2800, we are. 2500, all right, 2800 westbound flock of. Birds. 92 98 Ronnie runway take off,",
+    "end_s": 4358
+  },
+  {
+    "segment_id": 213,
+    "start_s": 4358,
+    "timestamp_fmt": "01:12:38",
+    "text": "right. 22 98 5157 Atlanta tower runway 8, right. Line of weight copy the bird advisory, uh. Got the bird advisory 5157 8, right line. The way. the bird 5241 Roger,",
+    "end_s": 4388
+  },
+  {
+    "segment_id": 214,
+    "start_s": 4388,
+    "timestamp_fmt": "01:13:08",
+    "text": "contact 5157 Arnado Hersel, runway right clear take off Hersel 8, right clear for takeoff and air 51 67 delta 2775, Atlanta tower runway 8 right, point 8 right 275 del 2161 for visual 8 left,",
+    "end_s": 4407
+  },
+  {
+    "segment_id": 215,
+    "start_s": 4407,
+    "timestamp_fmt": "01:13:27",
+    "text": "2161 Atlanta tower hello, runway 8 left clear land number one 8 left, clear 1153 Contact, letter contact. Good day.",
+    "end_s": 4428
+  },
+  {
+    "segment_id": 216,
+    "start_s": 4428,
+    "timestamp_fmt": "01:13:48",
+    "text": "All right. You have 0 6 0 7 2775 R now. Ronnie, runway 8 right Arnav Ronnie, clear takeaway 8 right, delta 275.",
+    "end_s": 4453
+  },
+  {
+    "segment_id": 217,
+    "start_s": 4453,
+    "timestamp_fmt": "01:14:13",
+    "text": "7 0 6 Atlanta, runway 8 right, 58 76. United 2298, contact. United 22 98, that's 06 now,",
+    "end_s": 4485
+  },
+  {
+    "segment_id": 218,
+    "start_s": 4485,
+    "timestamp_fmt": "01:14:45",
+    "text": "commercial runway clear for take off right, delta 76 delta. 18 Atlanta, runway 8 right. Left, clear for takeoff to grit number 53. 52 984 on a tow.",
+    "end_s": 4503
+  },
+  {
+    "segment_id": 219,
+    "start_s": 4503,
+    "timestamp_fmt": "01:15:03",
+    "text": "94 line. 179, contact. 1759, have a good Still 181 18 R now runway. Right.",
+    "end_s": 4542
+  },
+  {
+    "segment_id": 220,
+    "start_s": 4542,
+    "timestamp_fmt": "01:15:42",
+    "text": "Good morning. Delta 1039, visual 8 left. Delta 1039. Good morning one, runway 8 left. 8 left. Delta 1039.",
+    "end_s": 4552
+  },
+  {
+    "segment_id": 221,
+    "start_s": 4552,
+    "timestamp_fmt": "01:15:52",
+    "text": "Delta 2775, contact. 2775. Good day. 22 32 wind 0 6 0 day runway 9 right to left 76 departure departure 76 54 251 tower right now left two on 425 53 52 contact departure departure traffic 53 52",
+    "end_s": 4642
+  },
+  {
+    "segment_id": 222,
+    "start_s": 4642,
+    "timestamp_fmt": "01:17:22",
+    "text": "1960 1960, Atlanta runway left clear to land 49 91 runway, a lot of way 18 contact 18, 49 91 runway take off 64 now two line of Contact.",
+    "end_s": 4686
+  },
+  {
+    "segment_id": 223,
+    "start_s": 4686,
+    "timestamp_fmt": "01:18:06",
+    "text": "Thank you. 1039. Talk to you. Victor loop 1039. Good morning. Good day, guys.",
+    "end_s": 4714
+  },
+  {
+    "segment_id": 224,
+    "start_s": 4714,
+    "timestamp_fmt": "01:18:34",
+    "text": "Delta 1815 tower runway right, a right delta 183 burning 5143 land. Hello wind 0 6 0 1 9 right clear land right, 42 frontier 30 22 turn left on November,",
+    "end_s": 4747
+  },
+  {
+    "segment_id": 225,
+    "start_s": 4747,
+    "timestamp_fmt": "01:19:07",
+    "text": "and hold 9 left at zero uh November, hold short left at Sierra 5 302 64, another grit left Mike take off grid clear for takeoff. Delta 23 21 on the 9 left intersection. Mike 2.",
+    "end_s": 4765
+  },
+  {
+    "segment_id": 226,
+    "start_s": 4765,
+    "timestamp_fmt": "01:19:25",
+    "text": "Left, Mike 2, delta 23. 425 contact. left. Clear to land number one. Clear to land number one.",
+    "end_s": 4780
+  },
+  {
+    "segment_id": 227,
+    "start_s": 4780,
+    "timestamp_fmt": "01:19:40",
+    "text": "8 left. Delta 341. Delta 371, Atlanta. Use caution, similar sounding company. Call final runway right line of 8 right away. Delta 371 49 91.",
+    "end_s": 4792
+  },
+  {
+    "segment_id": 228,
+    "start_s": 4792,
+    "timestamp_fmt": "01:19:52",
+    "text": "No delay. 250 knots for me. Left Mike there 5312 on the call 9 left intersection Mike 2 left Mike 53 22 start we have an RJ",
+    "end_s": 4811
+  },
+  {
+    "segment_id": 229,
+    "start_s": 4811,
+    "timestamp_fmt": "01:20:11",
+    "text": "for ramp four, tug 22 hold. Short of Rome 9 right at Romeo 11 short. Niner right at Romeo 11, tug 22. Power 2522, Bernie 9 right 2522.",
+    "end_s": 4823
+  },
+  {
+    "segment_id": 230,
+    "start_s": 4823,
+    "timestamp_fmt": "01:20:23",
+    "text": "Sorry, good morning. Wind 0 7 08 only 9 right. Clear land, clear to land 9 right 252. Endeavor 532 grit runway 9 left from intersection Mike 2, clear take off Mike 2 take off delta 2354 tow left,",
+    "end_s": 4838
+  },
+  {
+    "segment_id": 231,
+    "start_s": 4838,
+    "timestamp_fmt": "01:20:38",
+    "text": "intersection Mike 2. Left Mike 2, we're going to wait for delta 2354 delta 1064, contact departure. See you later. Eight left.",
+    "end_s": 4872
+  },
+  {
+    "segment_id": 232,
+    "start_s": 4872,
+    "timestamp_fmt": "01:21:12",
+    "text": "Delta cross right. Short eight left. Tug 9. Delta 1960 at Bravo 10. Cross runway 8 right.",
+    "end_s": 4878
+  },
+  {
+    "segment_id": 233,
+    "start_s": 4878,
+    "timestamp_fmt": "01:21:18",
+    "text": "Right. Echo Ground point 9, at Bravo 10, cross 8 right. Right, bravo, at ground point 9 there. 1950, thank you,",
+    "end_s": 4887
+  },
+  {
+    "segment_id": 234,
+    "start_s": 4887,
+    "timestamp_fmt": "01:21:27",
+    "text": "you'll be right on echo, yeah. Right, echo. 1815, contact. Delta 18. There, 5143,",
+    "end_s": 4900
+  },
+  {
+    "segment_id": 235,
+    "start_s": 4900,
+    "timestamp_fmt": "01:21:40",
+    "text": "hold short of runway 9 left. At zero. Be number two there, number two there. 5143 Delta 2354 R9 grid runway 9 left.",
+    "end_s": 4911
+  },
+  {
+    "segment_id": 236,
+    "start_s": 4911,
+    "timestamp_fmt": "01:21:51",
+    "text": "From intersection Mike 2, clear takeoff. R9 grid left, Mike 2, clear takeoff. Delta 204. Delta 30 45 tow traffic will cross downfield for you.",
+    "end_s": 4920
+  },
+  {
+    "segment_id": 237,
+    "start_s": 4920,
+    "timestamp_fmt": "01:22:00",
+    "text": "9 left two line two I believe 34 371 contact departure 371 tug 9 at delta, cross runway left proceed out for the ramp, delta cross 8 left 9, delta 1941 Atlanta tower runway right line eight right,",
+    "end_s": 4945
+  },
+  {
+    "segment_id": 238,
+    "start_s": 4945,
+    "timestamp_fmt": "01:22:25",
+    "text": "delta 1941 delta 341 hold short runway a right at delta Short of eight delta, delta 840 341 41 now to hersel runway 8 right take off now hersel clear for takeoff 8 right delta 1940 and then Mike ground 52 5143 cross 9 left on mic,",
+    "end_s": 4972
+  },
+  {
+    "segment_id": 239,
+    "start_s": 4972,
+    "timestamp_fmt": "01:22:52",
+    "text": "ground 75 see 9 left and left turn to Mike and ground 75 43 55 455 Atlanta, number one, runway 8 left 45 left on November 9 left 252 at Rome 11, cross 29 right,",
+    "end_s": 4997
+  },
+  {
+    "segment_id": 240,
+    "start_s": 4997,
+    "timestamp_fmt": "01:23:17",
+    "text": "turn left on November 9, right turn left on November 122 54 contact departure. See you later. 320. Delta 341.",
+    "end_s": 5020
+  },
+  {
+    "segment_id": 241,
+    "start_s": 5020,
+    "timestamp_fmt": "01:23:40",
+    "text": "Try to hold in position at Delta. Cross runway, right join Fox. Contact ground point 9. Copy. Right join Fox. Ground 9.",
+    "end_s": 5026
+  },
+  {
+    "segment_id": 242,
+    "start_s": 5026,
+    "timestamp_fmt": "01:23:46",
+    "text": "Delta 341. Contact. Line 5872. Runway right, take off. 572, 11 tow runway right,",
+    "end_s": 5081
+  },
+  {
+    "segment_id": 243,
+    "start_s": 5081,
+    "timestamp_fmt": "01:24:41",
+    "text": "line runway 8. Right, line up delta 1151. 27 39 8 left, 2739 start number two. Behind A321 runway 8 left,",
+    "end_s": 5090
+  },
+  {
+    "segment_id": 244,
+    "start_s": 5090,
+    "timestamp_fmt": "01:24:50",
+    "text": "quick Left. Land. 64 tow. Thank you, 664 traffic cross. Uh copy.",
+    "end_s": 5104
+  },
+  {
+    "segment_id": 245,
+    "start_s": 5104,
+    "timestamp_fmt": "01:25:04",
+    "text": "Delta 64. 1151 RV runway, take off. Contact. 2522 traffic holding. Now left on Mike.",
+    "end_s": 5137
+  },
+  {
+    "segment_id": 246,
+    "start_s": 5137,
+    "timestamp_fmt": "01:25:37",
+    "text": "Ground 752. At Z, as well, crossing. Now left on Mike. Ground 75. Right, delta 58.",
+    "end_s": 5156
+  },
+  {
+    "segment_id": 247,
+    "start_s": 5156,
+    "timestamp_fmt": "01:25:56",
+    "text": "Southwest 28 73. Three line charge motor. Runway 8 left, clear to land, number two. Behind 8737, clear to land 203 588 on.",
+    "end_s": 5165
+  },
+  {
+    "segment_id": 248,
+    "start_s": 5165,
+    "timestamp_fmt": "01:26:05",
+    "text": "Hersel runway right, take off after 8. Right, clear for takeoff delta 58 51 at. Atlanta tower, as able runway right line. 58 right 58 72 contact.",
+    "end_s": 5178
+  },
+  {
+    "segment_id": 249,
+    "start_s": 5178,
+    "timestamp_fmt": "01:26:18",
+    "text": "Delta 455, hold short runway right at. Delta hold right at delta delta 455. 1958. Contact departure.",
+    "end_s": 5191
+  },
+  {
+    "segment_id": 250,
+    "start_s": 5191,
+    "timestamp_fmt": "01:26:31",
+    "text": "See you later. 664 down to grit. Runway 9 left from. Section Mike 2. Clear.",
+    "end_s": 5208
+  },
+  {
+    "segment_id": 251,
+    "start_s": 5208,
+    "timestamp_fmt": "01:26:48",
+    "text": "Air to the 7220 heavy tower 9 left. Intersection Mike 2, line of flight. Okay, land up line left at Mike 7 to uh, join Mike 54. 2739,",
+    "end_s": 5251
+  },
+  {
+    "segment_id": 252,
+    "start_s": 5251,
+    "timestamp_fmt": "01:27:31",
+    "text": "hold short runway right at Delta. Hold short runway 8 right, delta. Delta 27398. See you later. Air Canada 7220 heavy nav gr",
+    "end_s": 5281
+  },
+  {
+    "segment_id": 253,
+    "start_s": 5281,
+    "timestamp_fmt": "01:28:01",
+    "text": "Canada 7220 152 Atlanta cross for the heavy 767 departing 9 left, intersection Mike 2 line up delta 152, line up nine left mic two delta cross runway right, 25 shot ground 9. All right,",
+    "end_s": 5298
+  },
+  {
+    "segment_id": 254,
+    "start_s": 5298,
+    "timestamp_fmt": "01:28:18",
+    "text": "cross runway 8 right at Delta join Fox ground 9, delta 27 39 Atlanta tower, as you approaching cross runway 8 left, join Victor ground 9. All right,",
+    "end_s": 5307
+  },
+  {
+    "segment_id": 255,
+    "start_s": 5307,
+    "timestamp_fmt": "01:28:27",
+    "text": "we'll cross eight left if you're approaching. Join Victor. Contact ground left 25 64. Contact departure. Departure. Delta 664.",
+    "end_s": 5327
+  },
+  {
+    "segment_id": 256,
+    "start_s": 5327,
+    "timestamp_fmt": "01:28:47",
+    "text": "1763. You're up to the wind. 0 6 0 9. Right. Clear to land. Pull short eight right at delta southwest 2873 now to hersel runway right take off",
+    "end_s": 5354
+  },
+  {
+    "segment_id": 257,
+    "start_s": 5354,
+    "timestamp_fmt": "01:29:14",
+    "text": "481 tower traffic downfield runway right line right 48 91 15. We're now lost intersection Mike 2. Clear on 3107 now. Lost intersection, Mike 2.",
+    "end_s": 5377
+  },
+  {
+    "segment_id": 258,
+    "start_s": 5377,
+    "timestamp_fmt": "01:29:37",
+    "text": "Line of flight. Nine. Left. Mike 2. Line of flight. Delta. 3107. Air Canada 7220.",
+    "end_s": 5382
+  },
+  {
+    "segment_id": 259,
+    "start_s": 5382,
+    "timestamp_fmt": "01:29:42",
+    "text": "Heavy. Contact the line of departure. See you. Departure now. Air Canada 7220. Good day. Southwest 2873 at Delta cross runway right ground 9",
+    "end_s": 5401
+  },
+  {
+    "segment_id": 260,
+    "start_s": 5401,
+    "timestamp_fmt": "01:30:01",
+    "text": "3107 left, Mike 2, take off light left Mike 2 cleared for takeoff, 3107 flight 4891 out of Hersel runway right 1983 Atlanta runway right 8 right delta 1937 1237 Atlanta number on to 737,",
+    "end_s": 5439
+  },
+  {
+    "segment_id": 261,
+    "start_s": 5439,
+    "timestamp_fmt": "01:30:39",
+    "text": "runway 8 left, clear left 39 50 250 knots for me, in contact 25 hold that Sierra, now cross runway 9 left in R five,",
+    "end_s": 5459
+  },
+  {
+    "segment_id": 262,
+    "start_s": 5459,
+    "timestamp_fmt": "01:30:59",
+    "text": "and call directly see straight into 15 contact departure, 15 departure 1763 turn left on November. Go back to Sierra, and hold short of runway 9 left.",
+    "end_s": 5481
+  },
+  {
+    "segment_id": 263,
+    "start_s": 5481,
+    "timestamp_fmt": "01:31:21",
+    "text": "Sierra, hold short 9 left. Delta 1763 584 line traffic crossing down 9 left intersection Mike 2 line of way. 9 left Mike 2 line up away. Delta 584 right 40,",
+    "end_s": 5497
+  },
+  {
+    "segment_id": 264,
+    "start_s": 5497,
+    "timestamp_fmt": "01:31:37",
+    "text": "48 runway right, line of W, line up 40. 48, Delta 1741, hold right at Delta, hold. Right at Delta, Delta 1741.",
+    "end_s": 5509
+  },
+  {
+    "segment_id": 265,
+    "start_s": 5509,
+    "timestamp_fmt": "01:31:49",
+    "text": "31 07, contact departure, have a good one. 48 91, noway 250 knots for me, contact. 250 departure, flight 48way.",
+    "end_s": 5524
+  },
+  {
+    "segment_id": 266,
+    "start_s": 5524,
+    "timestamp_fmt": "01:32:04",
+    "text": "4048 on runway right, take off 8 right. Take off 4048 fairway 2216, Atlanta tower. Runway right, line up traffic downfield.",
+    "end_s": 5536
+  },
+  {
+    "segment_id": 267,
+    "start_s": 5536,
+    "timestamp_fmt": "01:32:16",
+    "text": "Right, line up fair 226. Right. Southwest 1 2 0 3 L on the target. Mark winds 07 08, now right, clear to land. Right, clear to land southwest 203.",
+    "end_s": 5571
+  },
+  {
+    "segment_id": 268,
+    "start_s": 5571,
+    "timestamp_fmt": "01:32:51",
+    "text": "Delta 584. Left from intersection Mike two, clear. Takeoff, lightest 9 left, Mike 2 clear. Takeoff, delta 54,",
+    "end_s": 5576
+  },
+  {
+    "segment_id": 269,
+    "start_s": 5576,
+    "timestamp_fmt": "01:32:56",
+    "text": "delta 26 71 9 left. Intersection, Mike 2, line of flight left. Mike 2, line of point, delta 26 71.",
+    "end_s": 5587
+  },
+  {
+    "segment_id": 270,
+    "start_s": 5587,
+    "timestamp_fmt": "01:33:07",
+    "text": "Delta 36, delta 193 contact. Delta 193. 31. Good morning. Roger. Looks like I'll",
+    "end_s": 5615
+  },
+  {
+    "segment_id": 271,
+    "start_s": 5615,
+    "timestamp_fmt": "01:33:35",
+    "text": "Hold short runway right at Delta. Short eight ride. We'll need about 3 to 5 minutes. You need 3 to 5 minutes. A permanent.",
+    "end_s": 5641
+  },
+  {
+    "segment_id": 272,
+    "start_s": 5641,
+    "timestamp_fmt": "01:34:01",
+    "text": "Yeah, maintenance message just pop up. We can move out of the way. 226 Army runway right, take off running clear to take off right 226 48 48 2319 at the approach and cross runway 8 right,",
+    "end_s": 5673
+  },
+  {
+    "segment_id": 273,
+    "start_s": 5673,
+    "timestamp_fmt": "01:34:33",
+    "text": "turn left on Victor, contact ground point 9 for rece All right. Approach and cross a ride. Victor over the ground. Alpha 79. Thank",
+    "end_s": 5700
+  },
+  {
+    "segment_id": 274,
+    "start_s": 5700,
+    "timestamp_fmt": "01:35:00",
+    "text": "Delta 1237 at Delta cross runway right join Fox ground 9. Tra position. Delta crossing right, fox one delta zone 31 approaching cross runway 8 left, join victor ground point 9,",
+    "end_s": 5733
+  },
+  {
+    "segment_id": 275,
+    "start_s": 5733,
+    "timestamp_fmt": "01:35:33",
+    "text": "good way to a 321 Take ground 321. Delta 369. Hold short runway right at delta. Short a right at delta. Delta 3069.",
+    "end_s": 5747
+  },
+  {
+    "segment_id": 276,
+    "start_s": 5747,
+    "timestamp_fmt": "01:35:47",
+    "text": "Delta 2711. Ravi. Runway. Right. Clear for takeoff. Now, clear for takeoff. A right. Delta 2711.",
+    "end_s": 5752
+  },
+  {
+    "segment_id": 277,
+    "start_s": 5752,
+    "timestamp_fmt": "01:35:52",
+    "text": "Delta 1682. Atlanta tower. Traffic will be downfield. Runway right. Line up. Line up eight. Right. Delta 1682.",
+    "end_s": 5760
+  },
+  {
+    "segment_id": 278,
+    "start_s": 5760,
+    "timestamp_fmt": "01:36:00",
+    "text": "2216. Contact departure. Fire 22 03. Turn left on November. Hold short of runway 9.",
+    "end_s": 5771
+  },
+  {
+    "segment_id": 279,
+    "start_s": 5771,
+    "timestamp_fmt": "01:36:11",
+    "text": "Left back at Sierra. All right. Left on November. Hold short of 9. Left at Sierra, Southwest 2003. Hotel.",
+    "end_s": 5781
+  },
+  {
+    "segment_id": 280,
+    "start_s": 5781,
+    "timestamp_fmt": "01:36:21",
+    "text": "We'll hold right at hotel. 31. 31, 0, 3 wind, 0, 6, 0 day, 9. Right.",
+    "end_s": 5793
+  },
+  {
+    "segment_id": 281,
+    "start_s": 5793,
+    "timestamp_fmt": "01:36:33",
+    "text": "Clear land. land. Now at hotel, cross runway 8 right, turn left on echo ground 9. Hotel 8 right. left on echo ground 9. Hotel 8 right echo ground 9.",
+    "end_s": 5817
+  },
+  {
+    "segment_id": 282,
+    "start_s": 5817,
+    "timestamp_fmt": "01:36:57",
+    "text": "21. Delta 29 23 R 29 left Mike 2, take off for takeoff 9 left Mike 2 grit delta 29 23 delta 25 41, cross 29 left intersection Mike two line of flight ground 9 delta,",
+    "end_s": 5847
+  },
+  {
+    "segment_id": 283,
+    "start_s": 5847,
+    "timestamp_fmt": "01:37:27",
+    "text": "cross 8 right, join Fox point 9 delta to 30 69, Delta 2711. Contact departure. Departure Delta 2711.",
+    "end_s": 5874
+  },
+  {
+    "segment_id": 284,
+    "start_s": 5874,
+    "timestamp_fmt": "01:37:54",
+    "text": "See you anchor on the other side, thanks for your help. 3 1682 park 1682 Charlie Papa 0 7 06 3 0 1 40 gig off flight 215 tower runway now",
+    "end_s": 5925
+  },
+  {
+    "segment_id": 285,
+    "start_s": 5925,
+    "timestamp_fmt": "01:38:45",
+    "text": "left in Mike 29 left Mike 2, deploy 215 delta 29 23 contact departure 2 departure delta 29 23 2319 runway right point 239 I left Sierra 33. 351 to the wind,",
+    "end_s": 6005
+  },
+  {
+    "segment_id": 286,
+    "start_s": 6005,
+    "timestamp_fmt": "01:40:05",
+    "text": "0 6 0 8 now right for the land right 51 flight 215 on the grid, we're now left Mike take off, no grit run left, Mike 2 take off",
+    "end_s": 6023
+  },
+  {
+    "segment_id": 287,
+    "start_s": 6023,
+    "timestamp_fmt": "01:40:23",
+    "text": "flight 21594 Four linear traffic cross runway 9 left intersection Mike 2 line of play runway 9 left, mike 2 line of weight delta 1894 2540 contact departure California 310 3. The traffic is going to hold to you at Sierra cross 29 left.",
+    "end_s": 6064
+  },
+  {
+    "segment_id": 288,
+    "start_s": 6064,
+    "timestamp_fmt": "01:41:04",
+    "text": "taxi 5 with me. See you 313. Also 239 2091 Delta 32 Atlanta.",
+    "end_s": 6114
+  },
+  {
+    "segment_id": 289,
+    "start_s": 6114,
+    "timestamp_fmt": "01:41:54",
+    "text": "Good morning. Runway point. Frontier flight 215. Contact departure.",
+    "end_s": 6127
+  },
+  {
+    "segment_id": 290,
+    "start_s": 6127,
+    "timestamp_fmt": "01:42:07",
+    "text": "Have a good one. For 847 tower, runway 8 left. Clear land. Number one. Eight left. Clear to land.",
+    "end_s": 6140
+  },
+  {
+    "segment_id": 291,
+    "start_s": 6140,
+    "timestamp_fmt": "01:42:20",
+    "text": "Delta 1847 3210 are now running. Runway right now left two out of play. Got a 30 51, turn left on November. Hold short runway 9 left back at Sierra.",
+    "end_s": 6157
+  },
+  {
+    "segment_id": 292,
+    "start_s": 6157,
+    "timestamp_fmt": "01:42:37",
+    "text": "9 left. Hold short. 9 left at Sierra 31. OP three. You still ready there. Op three from the, uh,",
+    "end_s": 6166
+  },
+  {
+    "segment_id": 293,
+    "start_s": 6166,
+    "timestamp_fmt": "01:42:46",
+    "text": "west end there. Taking only 9, right next turn about 8 mile off runway 975 Atlanta tower runway right line of point eight right line 675 737 left two clear takeoff 9 left two clear for takeoff 737 675 Rout Hersel runway right take off takeoff right 675 270 9 tower,",
+    "end_s": 6216
+  },
+  {
+    "segment_id": 294,
+    "start_s": 6216,
+    "timestamp_fmt": "01:43:36",
+    "text": "you're 27 09 you're next. Roger 2709 runway right line of point right 1894 contact departure. See you later.",
+    "end_s": 6252
+  },
+  {
+    "segment_id": 295,
+    "start_s": 6252,
+    "timestamp_fmt": "01:44:12",
+    "text": "Morning, del 3110 visual 8 left. Del 3110 delir. Good morning. Number two be 717 runway 8 left, clear land. Okay. Number two clear to land,",
+    "end_s": 6259
+  },
+  {
+    "segment_id": 296,
+    "start_s": 6259,
+    "timestamp_fmt": "01:44:19",
+    "text": "8 left. Uh, del 3110. Del 3210. Contact departure. Delta 3210 switching departure today. 27 09.",
+    "end_s": 6271
+  },
+  {
+    "segment_id": 297,
+    "start_s": 6271,
+    "timestamp_fmt": "01:44:31",
+    "text": "Rial. Runway right. Take off eight right for takeoff 27 24 right 24 737 contact departure, departure 737 right 9 right, you have 391. One vehicle's clear the wind 0 6 0,",
+    "end_s": 6304
+  },
+  {
+    "segment_id": 298,
+    "start_s": 6304,
+    "timestamp_fmt": "01:45:04",
+    "text": "6 9 right clear to land right clear way delta 9 we'll see 247 R now runway right, take off right clear for takeoff, delta 24 delta 1847 taxi via left on bravo, left turn on bravo,",
+    "end_s": 6324
+  },
+  {
+    "segment_id": 299,
+    "start_s": 6324,
+    "timestamp_fmt": "01:45:24",
+    "text": "please left on bravo, delta 1847 delta 1847, as you can guess, the ramp is not ready for you'll hold short runway Eight right at the departure end.",
+    "end_s": 6334
+  },
+  {
+    "segment_id": 300,
+    "start_s": 6334,
+    "timestamp_fmt": "01:45:34",
+    "text": "All right, we're going to hold short of confirm eight uh right at departure end. Delta 1847. Delta 1847. Affirmative. And as you know it,",
+    "end_s": 6343
+  },
+  {
+    "segment_id": 301,
+    "start_s": 6343,
+    "timestamp_fmt": "01:45:43",
+    "text": "they just switched it cuz uh your ramp's available now. So hold short runway 8 right as departure end. You're going to get to see today. I apologize. No worries.",
+    "end_s": 6351
+  },
+  {
+    "segment_id": 302,
+    "start_s": 6351,
+    "timestamp_fmt": "01:45:51",
+    "text": "We'll uh hold Short eight right at the end on Bravo. Delta 1847. 1847 at the departure train. You're going to cross runway 8, right turn right on echo.",
+    "end_s": 6376
+  },
+  {
+    "segment_id": 303,
+    "start_s": 6376,
+    "timestamp_fmt": "01:46:16",
+    "text": "Contact ground 0.9. Thanks. All right. Delta 1847 cross 8, right at Bravo down at the end, right turn on echo,",
+    "end_s": 6384
+  },
+  {
+    "segment_id": 304,
+    "start_s": 6384,
+    "timestamp_fmt": "01:46:24",
+    "text": "and we'll talk to ground. Delta 1847. Thank you. Delta 2789 contact 279, good day. Uh, sorry. Del 2709.",
+    "end_s": 6393
+  },
+  {
+    "segment_id": 305,
+    "start_s": 6393,
+    "timestamp_fmt": "01:46:33",
+    "text": "Good day. Short 8 right. Delta. Delta 3110. Delta 2011. 11. Traffic downfield.",
+    "end_s": 6411
+  },
+  {
+    "segment_id": 306,
+    "start_s": 6411,
+    "timestamp_fmt": "01:46:51",
+    "text": "Runway right out of eight. Right. 5 away. Delta 2147 push part. Delta 2011 Arnet Aral runway take off.",
+    "end_s": 6446
+  },
+  {
+    "segment_id": 307,
+    "start_s": 6446,
+    "timestamp_fmt": "01:47:26",
+    "text": "I have a clip, take up 8 right Delta 21. Dela 3091 at Sierra cross sign on left. Join Mike. Ground 75 91 southwest 409 tower line,",
+    "end_s": 6470
+  },
+  {
+    "segment_id": 308,
+    "start_s": 6470,
+    "timestamp_fmt": "01:47:50",
+    "text": "and wait 9 left mike two traffic downfield. Uh, we actually need a couple minutes to run a quick check with Mike two for 409. All right, pass Mike two on mike.",
+    "end_s": 6479
+  },
+  {
+    "segment_id": 309,
+    "start_s": 6479,
+    "timestamp_fmt": "01:47:59",
+    "text": "Hold short of lima advisor ready. All right, pass Mike two on mike. Hold short of limo ready 49. Delta 3110 at Delta cross runway a ride joint fox ground 9",
+    "end_s": 6509
+  },
+  {
+    "segment_id": 310,
+    "start_s": 6509,
+    "timestamp_fmt": "01:48:29",
+    "text": "cross a right delta fox drop 0.9 delta 311050 we're on the visual 9 right south of 3550 tower, clear to land, and right clear. Land right. Delta 1751 tower,",
+    "end_s": 6530
+  },
+  {
+    "segment_id": 311,
+    "start_s": 6530,
+    "timestamp_fmt": "01:48:50",
+    "text": "line up 9 left at Mike. 2. Delta 1751, line up and wait 9 left. Mike 2.",
+    "end_s": 6544
+  },
+  {
+    "segment_id": 312,
+    "start_s": 6544,
+    "timestamp_fmt": "01:49:04",
+    "text": "Delta 26 05 left November, short of nine left uniform. Left uniform. Runway 8 rack, clear takeoff 8 right.",
+    "end_s": 6553
+  },
+  {
+    "segment_id": 313,
+    "start_s": 6553,
+    "timestamp_fmt": "01:49:13",
+    "text": "Clear for takeoff 441. Arnavas, clear for takeoff 9 left to mike two. Two. Arnav linas. Nine left, mike two,",
+    "end_s": 6567
+  },
+  {
+    "segment_id": 314,
+    "start_s": 6567,
+    "timestamp_fmt": "01:49:27",
+    "text": "clear for takeoff. 597 tower, runway right, line eight right. Line eight, delta 25 97. 189 Atlanta tower line to wait,",
+    "end_s": 6595
+  },
+  {
+    "segment_id": 315,
+    "start_s": 6595,
+    "timestamp_fmt": "01:49:55",
+    "text": "9 left 25 97 Army runway clear takeoff, Ronnie 8 rack clear for takeoff. Delta 25 97. Delta 609 left November short of nine left Sierra.",
+    "end_s": 6625
+  },
+  {
+    "segment_id": 316,
+    "start_s": 6625,
+    "timestamp_fmt": "01:50:25",
+    "text": "Left November short, 9 left. Delta 609. Delta 28 999. Clear to land, 9 right. Clear to land, 9 right.",
+    "end_s": 6634
+  },
+  {
+    "segment_id": 317,
+    "start_s": 6634,
+    "timestamp_fmt": "01:50:34",
+    "text": "Delta 1899. Arnav clear, I mean RNA grid. Clear takeoff. 9 left at Mike 2. GR clear takeoff, 9 left.",
+    "end_s": 6641
+  },
+  {
+    "segment_id": 318,
+    "start_s": 6641,
+    "timestamp_fmt": "01:50:41",
+    "text": "Mike 2. Delta 1899. Del 54 tower line, 9 left mike 2 trap downfield and tower 49, we're ready to go south 40. 9 copy.",
+    "end_s": 6654
+  },
+  {
+    "segment_id": 319,
+    "start_s": 6654,
+    "timestamp_fmt": "01:50:54",
+    "text": "Delta 1154 tower, line up, wait 9 left. Mike 2, delta 1154, left Mike 2, line up. And wait,",
+    "end_s": 6660
+  },
+  {
+    "segment_id": 320,
+    "start_s": 6660,
+    "timestamp_fmt": "01:51:00",
+    "text": "1751 contact departure with departure delta 1751. Left uniform, my ground 75. Delta 69, cross on left here. My ground 75 75. Delta 609 3550.",
+    "end_s": 6704
+  },
+  {
+    "segment_id": 321,
+    "start_s": 6704,
+    "timestamp_fmt": "01:51:44",
+    "text": "The old short 9 left, a kilo short 9 left kilo 3550. On short runway right, take off right. Clear takeoff 5300 43 tower runway right.",
+    "end_s": 6722
+  },
+  {
+    "segment_id": 322,
+    "start_s": 6722,
+    "timestamp_fmt": "01:52:02",
+    "text": "line avoid 2957 coming up 25 97 114 Arnav to light us, take off 9 left two takeoff 9 left, two lightest south 409 line left at full lane, 8 9 left full lane 49",
+    "end_s": 6762
+  },
+  {
+    "segment_id": 323,
+    "start_s": 6762,
+    "timestamp_fmt": "01:52:42",
+    "text": "4033 RF runway right, take off right take off 433 delta 527 line tower right, line up right delta 527 Delta 8 94 to confirm behind the 71 or 73. Delta 894 behind the 71, 71.",
+    "end_s": 6790
+  },
+  {
+    "segment_id": 324,
+    "start_s": 6790,
+    "timestamp_fmt": "01:53:10",
+    "text": "Delta 8 94 clear for takeoff. 9 left 4 0 9 tower 2204 uh approach, right delta 2204 tower. Clear to land, niner right, wind 08 09.",
+    "end_s": 6807
+  },
+  {
+    "segment_id": 325,
+    "start_s": 6807,
+    "timestamp_fmt": "01:53:27",
+    "text": "Land right delta 2204, delta 28 999 left. November short of nine left at Sierra. Left for November, short of 9 left delta.",
+    "end_s": 6816
+  },
+  {
+    "segment_id": 326,
+    "start_s": 6816,
+    "timestamp_fmt": "01:53:36",
+    "text": "2899 tower for delta 3030, you want to set Mike 2 correct. Delta 3030 firm. And delta 3030, you can have to wait 9.",
+    "end_s": 6827
+  },
+  {
+    "segment_id": 327,
+    "start_s": 6827,
+    "timestamp_fmt": "01:53:47",
+    "text": "Left the mic 2 now. 1154 contact departure. Delta 92, just outside. 92 tower, runway 8 left, clear to land 0 1.",
+    "end_s": 6851
+  },
+  {
+    "segment_id": 328,
+    "start_s": 6851,
+    "timestamp_fmt": "01:54:11",
+    "text": "0 clear to land, eight left, delta 92. Delta 2155, Ronnie runway right, take off. Running for takeoff, 8 right, delta 2155.",
+    "end_s": 6861
+  },
+  {
+    "segment_id": 329,
+    "start_s": 6861,
+    "timestamp_fmt": "01:54:21",
+    "text": "Delta 8 94 limit tower, runway right line. Up right line of weight, delta 894. 33 coming departure. Departure.",
+    "end_s": 6872
+  },
+  {
+    "segment_id": 330,
+    "start_s": 6872,
+    "timestamp_fmt": "01:54:32",
+    "text": "Delta 289, cross left Mike, ground 75. Ground 75 del. 437 clear to land, niner right, 09. Go to land, 9 right,",
+    "end_s": 6885
+  },
+  {
+    "segment_id": 331,
+    "start_s": 6885,
+    "timestamp_fmt": "01:54:45",
+    "text": "south 43. Southwest 409, contact departure. Have a good weekend. Right take off, right there, 894 82 line. Of tower run, wait right,",
+    "end_s": 6901
+  },
+  {
+    "segment_id": 332,
+    "start_s": 6901,
+    "timestamp_fmt": "01:55:01",
+    "text": "right line up. Wait, line up, wait. 8 right, delta 8, 82 527 coming, departure, departure delta 527 See you.",
+    "end_s": 6930
+  },
+  {
+    "segment_id": 333,
+    "start_s": 6930,
+    "timestamp_fmt": "01:55:30",
+    "text": "Delta 3030. RNA grids clear, takeoff. 9 left at Mike 2. RNA grids. Clear for takeoff. Uh, runway 9 left at Mike 2 for double 330.",
+    "end_s": 6940
+  },
+  {
+    "segment_id": 334,
+    "start_s": 6940,
+    "timestamp_fmt": "01:55:40",
+    "text": "5520 tower, line up 9 left at Mike 2. Line up and wait 9 left. Mike 220 215 kind of departure. 215 left November and whole short nine left at Sierra 204.",
+    "end_s": 6965
+  },
+  {
+    "segment_id": 335,
+    "start_s": 6965,
+    "timestamp_fmt": "01:56:05",
+    "text": "21 5520 Arnav runway 9 left, Mike 2 takeoff runway 9 left, Mike take off 387 on a partial runway, right clip takeoff takeoff mid right,",
+    "end_s": 6991
+  },
+  {
+    "segment_id": 336,
+    "start_s": 6991,
+    "timestamp_fmt": "01:56:31",
+    "text": "delta 387 line of tower runway, right line 8 right left 313, 894 departure, stay 894 good Take Mike Lima 10 to the ramp with me. Sierra and Lima 10 single with you.",
+    "end_s": 7033
+  },
+  {
+    "segment_id": 337,
+    "start_s": 7033,
+    "timestamp_fmt": "01:57:13",
+    "text": "Delta 20, Alpha 437 at Sierra cross on her left. Join Mike. Contact ground 75. All right,",
+    "end_s": 7041
+  },
+  {
+    "segment_id": 338,
+    "start_s": 7041,
+    "timestamp_fmt": "01:57:21",
+    "text": "Sierra cleared to cross nine left, and then Mike and drop points on five southwest 437 5520 contact Atlanta departure today coming departure up to departure delta 82 Yeah. 153 on that runway. Right. Clear.",
+    "end_s": 7086
+  },
+  {
+    "segment_id": 339,
+    "start_s": 7086,
+    "timestamp_fmt": "01:58:06",
+    "text": "Takeoff. Right. Clear for takeoff. Picture 153. Delta 1240 line of tower, runway right.",
+    "end_s": 7093
+  },
+  {
+    "segment_id": 340,
+    "start_s": 7093,
+    "timestamp_fmt": "01:58:13",
+    "text": "Line up right, line up delta 1240. 37 departure, departure to 37. Delta 2925 tower. Now lightest clear takeoff 9 left.",
+    "end_s": 7115
+  },
+  {
+    "segment_id": 341,
+    "start_s": 7115,
+    "timestamp_fmt": "01:58:35",
+    "text": "29. 40 on air weight, right take off. 9 left at Mike 2, delta 1813.",
+    "end_s": 7136
+  },
+  {
+    "segment_id": 342,
+    "start_s": 7136,
+    "timestamp_fmt": "01:58:56",
+    "text": "Right 313. Delta 3013 coming. Delta 303. 496. 49 56 tower runway left 07.",
+    "end_s": 7155
+  },
+  {
+    "segment_id": 343,
+    "start_s": 7155,
+    "timestamp_fmt": "01:59:15",
+    "text": "Left 49, 217 tax 217 153 on a first runway, right take off right 937 line of tower runway, right line wait 937, right 153 kind of departure,",
+    "end_s": 7191
+  },
+  {
+    "segment_id": 344,
+    "start_s": 7191,
+    "timestamp_fmt": "01:59:51",
+    "text": "departure three thanks 92 Delta 1813 tower south of 681. We're at Bernie and N, right south of 681 tower.",
+    "end_s": 7220
+  },
+  {
+    "segment_id": 345,
+    "start_s": 7220,
+    "timestamp_fmt": "02:00:20",
+    "text": "Clear to land niner right. Wind 0706 clear land, right southwest 81 Good morning to Hershel, runway 8 right, clear takeoff.",
+    "end_s": 7262
+  },
+  {
+    "segment_id": 346,
+    "start_s": 7262,
+    "timestamp_fmt": "02:01:02",
+    "text": "8 right, clear for takeoff, delta 937 952. Line tower, runway 8 right, line up. Right line 92.",
+    "end_s": 7272
+  },
+  {
+    "segment_id": 347,
+    "start_s": 7272,
+    "timestamp_fmt": "02:01:12",
+    "text": "Delta 31 53, connect departure. Departure 313. Okay. Offic two. Go ahead.",
+    "end_s": 7301
+  },
+  {
+    "segment_id": 348,
+    "start_s": 7301,
+    "timestamp_fmt": "02:01:41",
+    "text": "Op two. You're at the approach in. Op two from the approach in, you can proceed on to runway 8 left. From the approach,",
+    "end_s": 7311
+  },
+  {
+    "segment_id": 349,
+    "start_s": 7311,
+    "timestamp_fmt": "02:01:51",
+    "text": "proceeding onto runway 8 left. Thank you. Endeavor 4956, tax the Victor loop. 52 on brown airway, right, take off.",
+    "end_s": 7339
+  },
+  {
+    "segment_id": 350,
+    "start_s": 7339,
+    "timestamp_fmt": "02:02:19",
+    "text": "1813, contact departure. 1813, contact departure, departure delta. 1813. Delta 253 tower, wind 07 07, clear land. Right, clear land, right 253.",
+    "end_s": 7358
+  },
+  {
+    "segment_id": 351,
+    "start_s": 7358,
+    "timestamp_fmt": "02:02:38",
+    "text": "Delta 937, coming departure, stay up. 2561. Air wings 2561 tower. 775 line of tower runway, right,",
+    "end_s": 7408
+  },
+  {
+    "segment_id": 352,
+    "start_s": 7408,
+    "timestamp_fmt": "02:03:28",
+    "text": "line up 8. Right, delta 775, 952 contact. Jazz 95 future. 681 hold short of 9 left at zero.",
+    "end_s": 7438
+  }
+]
